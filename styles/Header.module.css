@@ -1,4 +1,16 @@
 .container {
   height: 8vh;
   min-height: 60px;
+  padding: 0 2rem;
+}
+
+.container nav {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logo h1 {
+  font-size: 2rem;
 }

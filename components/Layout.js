@@ -1,6 +1,7 @@
 import Head from "next/head";
 import styles from "@/styles/Layout.module.css";
-// import Header from "./Header";
+import Header from "./Header";
+import Nav from "./Nav";
 
 const Layout = ({ title, keywords, description, children }) => {
   return (
@@ -12,19 +13,10 @@ const Layout = ({ title, keywords, description, children }) => {
       </Head>
 
       <div className={styles.container}>
-        {/* <Header /> */}
-        <div className={styles.header}>
-          <h2>Header</h2>
-        </div>
+        <Header />
+
         <div className={styles.content}>
-          <div className={styles.navlinks}>
-            <ul style={{ listStyle: "none" }}>
-              <li>Dashboard</li>
-              <li>Transaction</li>
-              <li>Budget</li>
-              <li>Settings</li>
-            </ul>
-          </div>
+          <Nav />
           <div className={styles.children}>{children}</div>
         </div>
       </div>

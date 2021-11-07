@@ -1,3 +1,15 @@
+:root {
+  --white-1: #ffffff;
+  --white-2: #f3f3f3;
+  --white-3: #ffffff;
+  --white-4: #eaeaea;
+  --white-5: #b5b5b5;
+  --black-1: #000000;
+  --black-2: #272727;
+  --green: #59bb1c;
+  --red: #fa634e;
+}
+
 * {
   padding: 0;
   margin: 0;

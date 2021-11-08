@@ -1,32 +1,10 @@
 /* eslint-disable @next/next/no-img-element */
-import { useRef, useEffect, useState } from "react";
 import styles from "@/styles/WalletOverview.module.css";
-import { motion } from "framer-motion";
 
 export default function WalletOverview() {
-  const ref = useRef(null);
-  const [left, setLeft] = useState(0);
-
-  useEffect(() => {
-    dragLeft();
-    window.addEventListener("resize", dragLeft);
-    // return () => window.removeEventListener("resize", dragLeft);
-  }, []);
-
-  const dragLeft = () => {
-    const size = ref.current.getBoundingClientRect();
-    const value = size.width - 910;
-    setLeft(value);
-  };
-
   return (
-    <div ref={ref} className={styles.container}>
-      <motion.div
-        drag={"x"}
-        dragConstraints={{ left, right: 0 }}
-        whileTap={{ cursor: "grabbing" }}
-        className={styles.content}
-      >
+    <div className={styles.container}>
+      <div className={styles.content}>
         <div className={` box ${styles.card}`}>
           <div className={styles.left}>
             <p>Gains</p>
@@ -99,7 +77,7 @@ export default function WalletOverview() {
             <p style={{ color: "#fa634e" }}>6%</p>
           </div>
         </div>
-      </motion.div>
+      </div>
     </div>
   );
 }

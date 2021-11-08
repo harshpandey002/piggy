@@ -5,7 +5,7 @@ import Nav from "./Nav";
 
 const Layout = ({ title, keywords, description, children }) => {
   return (
-    <div>
+    <div style={{ backgroundColor: "#eaeaea" }}>
       <Head>
         <title>{title}</title>
         <meta name="description" content={description} />

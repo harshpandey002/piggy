@@ -30,7 +30,19 @@
   background-color: var(--white-3);
   height: 30%;
 }
+
 .bottom {
   background-color: var(--white-3);
   height: 70%;
+}
+
+@media only screen and (max-width: 600px) {
+  .container {
+    flex-direction: column;
+  }
+
+  .left,
+  .right {
+    width: 100%;
+  }
 }

@@ -1,16 +1,19 @@
-.container {
+/* .container {
   overflow: hidden;
-}
+} */
 
 .content {
   display: flex;
+  flex-wrap: wrap;
   gap: 1rem;
 }
 
 .card {
+  min-width: 150px;
+  flex: 1;
   display: flex;
   align-items: center;
-  gap: 3vw;
+  gap: 2vw;
 }
 
 .left h3 {
@@ -41,4 +44,10 @@
 
 .right p {
   color: var(--green);
+}
+
+@media only screen and (max-width: 1380px) {
+  .right {
+    display: none;
+  }
 }

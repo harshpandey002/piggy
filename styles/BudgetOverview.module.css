@@ -1,4 +1,6 @@
 .container {
-  background-color: var(--white-3);
-  height: 33%;
+  height: max-content;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
 }

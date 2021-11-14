@@ -1,0 +1,50 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  min-width: 200px;
+  flex: 1;
+  /* width: clamp(200px, 100%); */
+}
+
+.content h2 {
+  margin-top: 10px;
+  font-weight: 500;
+  color: var(--green);
+  line-height: 0.8;
+}
+
+.content h2 span {
+  color: var(--white-5);
+  font-weight: 400;
+}
+
+.content p {
+  font-size: 0.8rem;
+  color: var(--white-5);
+}
+
+.outer {
+  background-color: var(--white-2);
+  width: 100%;
+  overflow: hidden;
+  height: 30px;
+  border-radius: 3px;
+}
+
+.inner {
+  background-color: var(--green);
+  width: 25%;
+  height: 100%;
+}
+
+.dates {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.dates p {
+  color: var(--white-5);
+  font-size: 0.8rem;
+}

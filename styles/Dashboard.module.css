@@ -31,12 +31,7 @@
   height: 30%;
 }
 
-.bottom {
-  background-color: var(--white-3);
-  height: 70%;
-}
-
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 1030px) {
   .container {
     flex-direction: column;
   }

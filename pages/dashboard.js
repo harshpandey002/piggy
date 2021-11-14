@@ -3,6 +3,7 @@ import Layout from "@/components/Layout";
 import WalletOverview from "@/components/WalletOverview";
 import Graph from "@/components/Graph";
 import BudgetOverview from "@/components/BudgetOverview";
+import Recent from "@/components/Recent";
 
 export default function Dashboard() {
   return (
@@ -15,7 +16,7 @@ export default function Dashboard() {
         </div>
         <div className={styles.right}>
           <div className={styles.top}></div>
-          <div className={styles.bottom}></div>
+          <Recent />
         </div>
       </div>
     </Layout>

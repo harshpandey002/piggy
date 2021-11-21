@@ -48,6 +48,17 @@ const data = [
 export default function Graph() {
   return (
     <div className={styles.container}>
+      <div className={styles.header}>
+        <div className={styles.name}>
+          <h3>Balance Overview</h3>
+        </div>
+        <div className={styles.filters}>
+          <button>Day</button>
+          <button>Week</button>
+          <button>Month</button>
+        </div>
+      </div>
+
       <div className={` box ${styles.content}`}>
         <ResponsiveContainer>
           <LineChart data={data}>
@@ -62,3 +73,16 @@ export default function Graph() {
     </div>
   );
 }
+
+// <div className={styles.filter}>
+//    <label htmlFor="day">Day</label>
+//    <input type="radio" id="day" name="timeFrame" />
+// </div>
+// <div className={styles.filter}>
+//  <label htmlFor="week">Week</label>
+//  <input type="radio" id="week" name="timeFrame" />
+// </div>
+// <div className={styles.filter}>
+//  <label htmlFor="month">Month</label>
+//  <input type="radio" id="month" name="timeFrame" />
+// </div>

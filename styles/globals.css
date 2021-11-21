@@ -29,6 +29,19 @@ body {
   color: var(--black-2);
 }
 
+body {
+  overflow: overlay;
+}
+
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 3px;
+  background-color: var(--white-5);
+}
+
 a {
   color: inherit;
   text-decoration: none;

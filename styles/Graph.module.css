@@ -1,8 +1,83 @@
 .container {
   height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.name h3 {
+  font-weight: 400;
+  font-size: 1.4rem;
+}
+
+.filters {
+  display: flex;
+  gap: 15px;
+}
+
+.filters button {
+  border: none;
+  outline: none;
+  padding: 0.4rem 1rem;
+  color: var(--black-1);
+  background-color: var(--white-3);
+  font-size: 1rem;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.filters button:first-child {
+  color: var(--white-1);
+  background-color: var(--black-2);
 }
 
 .content {
   width: 100%;
   height: 100%;
+  min-height: 250px;
+}
+
+/* 
+.filters input {
+  display: none;
+}
+
+.filters label {
+  padding: 0.4rem 1rem;
+  color: var(--black-1);
+  background-color: var(--white-3);
+  font-size: 1rem;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.checked {
+  background-color: var(--black-2);
+  color: var(--white-1);
+} */
+
+@media only screen and (max-width: 660px) {
+  .name h3 {
+    font-size: 1rem;
+  }
+
+  .filters {
+    gap: 10px;
+  }
+
+  .filters button {
+    padding: 0.4rem 0.8rem;
+    width: max-content;
+  }
+
+  /* .content {
+    height: 250px;
+  } */
 }

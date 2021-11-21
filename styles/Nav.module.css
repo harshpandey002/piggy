@@ -32,6 +32,7 @@
   .container {
     width: 9%;
     padding-left: initial;
+    z-index: 1;
   }
 
   .links {

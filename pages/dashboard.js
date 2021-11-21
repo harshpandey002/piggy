@@ -15,7 +15,7 @@ export default function Dashboard() {
           <BudgetOverview />
         </div>
         <div className={styles.right}>
-          <div className={styles.top}></div>
+          <div className={`box ${styles.top}`}></div>
           <Recent />
         </div>
       </div>

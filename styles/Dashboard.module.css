@@ -27,8 +27,8 @@
 }
 
 .top {
-  background-color: var(--white-3);
   height: 30%;
+  width: 100%;
 }
 
 @media only screen and (max-width: 1030px) {

@@ -52,7 +52,7 @@ const transactions = [
   },
   {
     date: "Nov 8",
-    category: "Gym Essentials",
+    category: "Gym",
     price: 1500,
     gain: false,
   },

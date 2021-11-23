@@ -1,4 +1,5 @@
 import styles from "@/styles/Budget.module.css";
+import { numberWithCommas } from "@/util/util";
 
 export default function Budget() {
   return (
@@ -7,14 +8,16 @@ export default function Budget() {
         <p>Groceries</p>
       </div>
       <div className={styles.content}>
-        <h2>
-          7000 INR <span>left</span>
+        <h2 className="tooltip" data-tooltip={`₹${numberWithCommas(7000)}`}>
+          {numberWithCommas(7000)} <span>left</span>
         </h2>
-        <p>from 10000 INR</p>
+        <p className="tooltip" data-tooltip={`₹${numberWithCommas(10000)}`}>
+          from {numberWithCommas(10000)}
+        </p>
       </div>
       <div className={styles.visual}>
         <div className={styles.outer}>
-          <div className={styles.inner}></div>
+          <div className={styles.inner} />
         </div>
         <div className={styles.dates}>
           <p>Nov 01, 2021</p>

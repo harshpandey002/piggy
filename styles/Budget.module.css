@@ -8,6 +8,7 @@
 }
 
 .content h2 {
+  width: max-content;
   margin-top: 10px;
   font-weight: 500;
   color: var(--green);
@@ -20,6 +21,7 @@
 }
 
 .content p {
+  width: max-content;
   font-size: 0.8rem;
   color: var(--white-5);
 }

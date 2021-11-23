@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import styles from "@/styles/Recent.module.css";
+import { numberWithCommas } from "@/util/util";
 
 const transactions = [
   {
@@ -92,7 +93,7 @@ const Transaction = ({ data }) => {
     <div className={styles.row}>
       <p>{data.date}</p>
       <p>{data.category}</p>
-      <p className={styles[color]}>{data.price}</p>
+      <p className={styles[color]}>{numberWithCommas(data.price)}</p>
     </div>
   );
 };

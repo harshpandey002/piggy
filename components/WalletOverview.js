@@ -1,5 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 import styles from "@/styles/WalletOverview.module.css";
+import { numberWithCommas } from "@/util/util";
 
 export default function WalletOverview() {
   return (
@@ -8,9 +9,14 @@ export default function WalletOverview() {
         <div className={` box ${styles.card}`}>
           <div className={styles.left}>
             <p>Gains</p>
-            <h3>12505</h3>
-            <p>
-              500 <span>/ day</span>
+            <h3
+              className="tooltip"
+              data-tooltip={`₹${numberWithCommas(12505)}`}
+            >
+              {numberWithCommas(12505)}
+            </h3>
+            <p className="tooltip" data-tooltip={`₹${numberWithCommas(500)}`}>
+              {numberWithCommas(500)} <span>/ day</span>
             </p>
           </div>
           <div className={styles.right}>
@@ -26,9 +32,11 @@ export default function WalletOverview() {
         <div className={` box ${styles.card}`}>
           <div className={styles.left}>
             <p>Expenditure</p>
-            <h3>8430</h3>
-            <p>
-              300 <span>/ day</span>
+            <h3 className="tooltip" data-tooltip={`₹${numberWithCommas(8430)}`}>
+              {numberWithCommas(8430)}
+            </h3>
+            <p className="tooltip" data-tooltip={`₹${numberWithCommas(300)}`}>
+              {numberWithCommas(300)} <span>/ day</span>
             </p>
           </div>
           <div className={styles.right}>
@@ -44,9 +52,11 @@ export default function WalletOverview() {
         <div className={` box ${styles.card}`}>
           <div className={styles.left}>
             <p>Expenditure</p>
-            <h3>2505</h3>
-            <p>
-              500 <span>/ day</span>
+            <h3 className="tooltip" data-tooltip={`₹${numberWithCommas(2505)}`}>
+              {numberWithCommas(2505)}
+            </h3>
+            <p className="tooltip" data-tooltip={`₹${numberWithCommas(500)}`}>
+              {numberWithCommas(500)} <span>/ day</span>
             </p>
           </div>
           <div className={styles.right}>
@@ -62,9 +72,11 @@ export default function WalletOverview() {
         <div className={` box ${styles.card}`}>
           <div className={styles.left}>
             <p>Expenditure</p>
-            <h3>8430</h3>
-            <p>
-              300 <span>/ day</span>
+            <h3 className="tooltip" data-tooltip={`₹${numberWithCommas(8430)}`}>
+              {numberWithCommas(8430)}
+            </h3>
+            <p className="tooltip" data-tooltip={`₹${numberWithCommas(300)}`}>
+              {numberWithCommas(300)} <span>/ day</span>
             </p>
           </div>
           <div className={styles.right}>

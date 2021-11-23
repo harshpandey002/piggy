@@ -65,7 +65,8 @@ a {
 .tooltip::after {
   --scale: 0;
   --arrow-size: 8px;
-  --tooltip-color: rgb(31, 31, 31);
+  --tooltip-color: var(--white-2);
+  --color: var(--black-2);
 
   position: absolute;
   top: -0.25rem;
@@ -81,13 +82,15 @@ a {
 
   content: attr(data-tooltip);
   font-size: 1rem;
-  color: rgb(255, 255, 255);
+  color: var(--color);
   padding: 0.5rem;
   border-radius: 0.3rem;
   text-align: center;
   width: max-content;
   max-width: 100%;
   background: var(--tooltip-color);
+  border: 0.5px solid var(--white-4);
+  pointer-events: none;
 }
 
 .tooltip:hover::before,
@@ -97,9 +100,9 @@ a {
 
 .tooltip::after {
   --translate-y: calc(-1 * var(--arrow-size));
-
   content: "";
   border: var(--arrow-size) solid transparent;
-  border-top-color: var(--tooltip-color);
+  /* border-top-color: var(--tooltip-color); */
+  border-top-color: var(--black-2);
   transform-origin: top center;
 }

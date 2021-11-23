@@ -84,3 +84,14 @@
 .returns h3 {
   color: var(--green);
 }
+
+@media only screen and (max-width: 1030px) {
+  .container {
+    gap: 5px;
+  }
+
+  .worth,
+  .dependencies {
+    gap: 15px;
+  }
+}

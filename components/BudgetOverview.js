@@ -7,6 +7,7 @@ export default function BudgetOverview() {
       <Budget />
       <Budget />
       <Budget />
+      <Budget />
     </div>
   );
 }

@@ -1,7 +1,7 @@
-import styles from "@/styles/Budget.module.css";
+import styles from "@/styles/BudgetCard.module.css";
 import { numberWithCommas } from "@/util/util";
 
-export default function Budget() {
+export default function BudgetCard() {
   return (
     <div className={` box ${styles.container}`}>
       <div className={styles.category}>

@@ -5,22 +5,28 @@ import {
   AiOutlineCreditCard,
   AiOutlineSetting,
 } from "react-icons/ai";
+import Link from "next/link";
+
 export default function Nav() {
   return (
     <div className={styles.container}>
       <ul className={styles.links}>
-        <li>
-          <AiOutlineHome className={styles.icon} />
-          <span>Dashboard</span>
-        </li>
+        <Link href="/dashboard" passHref>
+          <li>
+            <AiOutlineHome className={styles.icon} />
+            <span>Dashboard</span>
+          </li>
+        </Link>
         <li>
           <AiOutlineCreditCard className={styles.icon} />
           <span>Transaction</span>
         </li>
-        <li>
-          <AiOutlineDollarCircle className={styles.icon} />
-          <span>Budget</span>
-        </li>
+        <Link href="/budget" passHref>
+          <li>
+            <AiOutlineDollarCircle className={styles.icon} />
+            <span>Budget</span>
+          </li>
+        </Link>
         <li>
           <AiOutlineSetting className={styles.icon} />
           <span>Settings</span>

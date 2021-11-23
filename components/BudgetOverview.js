@@ -1,13 +1,12 @@
 import styles from "@/styles/BudgetOverview.module.css";
-import Budget from "./Budget";
+import BudgetCard from "./BudgetCard";
 
 export default function BudgetOverview() {
   return (
     <div className={styles.container}>
-      <Budget />
-      <Budget />
-      <Budget />
-      <Budget />
+      <BudgetCard />
+      <BudgetCard />
+      <BudgetCard />
     </div>
   );
 }

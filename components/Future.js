@@ -36,13 +36,13 @@ export default function Future() {
         <div className={styles.dependencies}>
           <div className={styles.returns}>
             <h3>6%</h3>
-            <p>per month</p>
+            <p>Returns</p>
           </div>
           <div className={styles.save}>
             <h3 className="tooltip" data-tooltip={`₹${numberWithCommas(2000)}`}>
               {numberWithCommas(2000)}
             </h3>
-            <p>per month</p>
+            <p>Saved</p>
           </div>
         </div>
       </div>

@@ -10,38 +10,52 @@ import {
   ResponsiveContainer,
 } from "recharts";
 
+import { numberWithCommas } from "@/util/util";
+
 const data = [
   {
-    name: "Page A",
-    pv: 2400,
+    name: "Nov 3",
+    pv: 24000,
   },
   {
-    name: "Page B",
-    pv: 1398,
+    name: "Nov 8",
+    pv: 35500,
   },
   {
-    name: "Page C",
-    pv: 9800,
+    name: "Nov 10",
+    pv: 36000,
   },
   {
-    name: "Page D",
-    pv: 3908,
+    name: "Nov 15",
+    pv: 34080,
   },
   {
-    name: "Page D",
-    pv: 3908,
+    name: "Nov 18",
+    pv: 33080,
   },
   {
-    name: "Page E",
-    pv: 4800,
+    name: "Nov 18",
+    pv: 35000,
   },
   {
-    name: "Page F",
-    pv: 3800,
+    name: "Nov 18",
+    pv: 30000,
   },
   {
-    name: "Page G",
-    pv: 4300,
+    name: "Nov 20",
+    pv: 29000,
+  },
+  {
+    name: "Nov 25",
+    pv: 27000,
+  },
+  {
+    name: "Nov 30",
+    pv: 31000,
+  },
+  {
+    name: "Nov 28",
+    pv: 30000,
   },
 ];
 
@@ -65,8 +79,8 @@ export default function Graph() {
             {/* <CartesianGrid strokeDasharray="3 3" /> */}
             <XAxis dataKey="name" />
             <YAxis />
-            <Tooltip />
-            <Line type="monotone" dataKey="pv" stroke="#000" />
+            <Tooltip cursor={false} />
+            <Line type="monotone" dataKey="pv" stroke="#000" dot={false} />
           </LineChart>
         </ResponsiveContainer>
       </div>

@@ -15,39 +15,39 @@ import { numberWithCommas } from "@/util/util";
 const data = [
   {
     name: "Nov 3",
-    pv: 24000,
+    pv: 10000,
   },
   {
     name: "Nov 8",
-    pv: 35500,
+    pv: 16500,
   },
   {
     name: "Nov 10",
-    pv: 36000,
+    pv: 17000,
   },
   {
     name: "Nov 15",
-    pv: 34080,
+    pv: 19080,
   },
   {
     name: "Nov 18",
-    pv: 33080,
+    pv: 17080,
   },
   {
     name: "Nov 18",
-    pv: 35000,
+    pv: 21000,
   },
   {
     name: "Nov 18",
-    pv: 30000,
+    pv: 17000,
   },
   {
     name: "Nov 20",
-    pv: 29000,
+    pv: 27000,
   },
   {
     name: "Nov 25",
-    pv: 27000,
+    pv: 25000,
   },
   {
     name: "Nov 30",

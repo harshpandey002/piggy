@@ -1,0 +1,35 @@
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  position: relative;
+}
+
+.navlinks {
+  width: 40vw;
+  list-style: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.navlinks li {
+  font-size: 1.4rem;
+  color: var(--white-6);
+  cursor: pointer;
+  z-index: 1;
+}
+
+.navlinks li:hover {
+  color: var(--white-2);
+}
+
+.navlinks::before {
+  position: absolute;
+  content: "";
+  background-color: var(--black-2);
+  width: 100vw;
+  height: 100vh;
+  z-index: 0;
+}

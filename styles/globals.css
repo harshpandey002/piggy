@@ -89,7 +89,7 @@ a {
   width: max-content;
   max-width: 100%;
   background: var(--tooltip-color);
-  border: 0.5px solid var(--white-4);
+  border: 0.5px solid var(--white-6);
   pointer-events: none;
 }
 

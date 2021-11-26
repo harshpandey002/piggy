@@ -1,0 +1,54 @@
+export const dropStyles = {
+  option: (provided, state) => ({
+    ...provided,
+  }),
+  menuList: (provided, state) => ({
+    ...provided,
+    // maxHeight: 200,
+  }),
+  control: (provided, state) => ({
+    ...provided,
+    borderColor: "#cccccc",
+    borderRadius: 5,
+    boxShadow: "none",
+    "&:focus": {
+      boxShadow: "none",
+    },
+    "&:hover": {
+      borderColor: "#8a8a8a",
+    },
+  }),
+
+  container: (provided, state) => ({
+    ...provided,
+    width: "100%",
+  }),
+  valueContainer: (provided, state) => ({
+    ...provided,
+    cursor: "text",
+  }),
+  indicatorsContainer: (provided, state) => ({
+    ...provided,
+  }),
+};
+
+export const getTheme = (theme) => ({
+  ...theme,
+  borderRadius: 0,
+  colors: {
+    ...theme.colors,
+    primary25: "#f3f3f3",
+    primary50: "#e6e6e6",
+    primary: "#272727",
+  },
+});
+
+export const categoryOp = [
+  { value: "Transport", label: "Transport" },
+  { value: "Food and Drinks", label: "Food and Drinks" },
+  { value: "Groceries", label: "Groceries" },
+  { value: "Gym Essentials", label: "Gym Essentials" },
+  { value: "Trading", label: "Trading" },
+  { value: "Income", label: "Income" },
+  { value: "Side Income", label: "Side Income" },
+];

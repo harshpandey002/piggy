@@ -67,7 +67,6 @@ a {
   --arrow-size: 8px;
   --tooltip-color: var(--white-2);
   --color: var(--black-2);
-
   position: absolute;
   top: -0.25rem;
   left: 50%;
@@ -79,7 +78,6 @@ a {
 
 .tooltip::before {
   --translate-y: calc(-100% - var(--arrow-size));
-
   content: attr(data-tooltip);
   font-size: 1rem;
   color: var(--color);
@@ -87,7 +85,7 @@ a {
   border-radius: 0.3rem;
   text-align: center;
   width: max-content;
-  max-width: 100%;
+  /* max-width: 100%; */
   background: var(--tooltip-color);
   border: 0.5px solid var(--white-6);
   pointer-events: none;

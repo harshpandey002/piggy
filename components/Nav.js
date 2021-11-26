@@ -17,10 +17,12 @@ export default function Nav() {
             <span>Dashboard</span>
           </li>
         </Link>
-        <li>
-          <AiOutlineCreditCard className={styles.icon} />
-          <span>Transaction</span>
-        </li>
+        <Link href="/transaction" passHref>
+          <li>
+            <AiOutlineCreditCard className={styles.icon} />
+            <span>Transaction</span>
+          </li>
+        </Link>
         <Link href="/budget" passHref>
           <li>
             <AiOutlineDollarCircle className={styles.icon} />

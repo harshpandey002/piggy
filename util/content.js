@@ -93,6 +93,6 @@ export const transactions = [
     date: "Oct 02, 2021",
     desc: "m nventore alias animi similique quim nventore alias animi similique qui",
     money: "23000",
-    gain: false,
+    gain: true,
   },
 ];

@@ -5,11 +5,18 @@ import { transactions } from "@/util/content";
 import Select from "react-select";
 import ReactSlider from "react-slider";
 import { dropStyles, getTheme, categoryOp } from "@/util/common";
+import { DateRange } from "react-date-range";
 
 export default function Transaction() {
   const [keyword, setKeyword] = useState("");
   const [category, setCategory] = useState([]);
-
+  const [date, setDate] = useState([
+    {
+      startDate: new Date(),
+      endDate: null,
+      key: "selection",
+    },
+  ]);
   return (
     <Layout>
       <div className={styles.container}>
@@ -18,7 +25,7 @@ export default function Transaction() {
             <button>Add Transaction</button>
           </div>
           <div className={styles.picker}>
-            <button>Oct 20, 2021 - NOv 03, 2021</button>
+            <button>Oct 20, 2021 - Nov 03, 2021</button>
           </div>
         </div>
         <div className={styles.content}>
@@ -58,7 +65,7 @@ export default function Transaction() {
                 onChange={(value, index) =>
                   console.log(`onChange: ${JSON.stringify({ value, index })}`)
                 }
-                trackClassName={styles.sliderTrack}
+                trackClassName="sliderTrack"
                 defaultValue={[0, 100]}
                 ariaLabel={["Lower thumb", "Upper thumb"]}
                 ariaValuetext={(state) => `Thumb value ${state.valueNow}`}
@@ -66,6 +73,12 @@ export default function Transaction() {
                 minDistance={10}
               />
             </div>
+            {/* <DateRange
+              editableDateInputs={true}
+              onChange={(item) => setDate([item.selection])}
+              moveRangeOnFirstSelection={false}
+              ranges={date}
+            /> */}
           </div>
         </div>
       </div>

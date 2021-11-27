@@ -129,12 +129,12 @@
 
 .sliderThumb {
   --rad: 20px;
-  background-color: var(--white-6);
+  background-color: var(--white-1);
+  border: 1px solid var(--white-5);
   height: var(--rad);
   width: var(--rad);
   border-radius: 50%;
   outline: none;
-  color: transparent;
   cursor: grab;
   position: relative;
 }
@@ -155,10 +155,9 @@
   transform: translateX(-50%);
 }
 
-.sliderTrack {
-  background-color: var(--white-5);
-  height: 2px;
-}
+/* .sliderTrack {
+  Global CSS
+} */
 
 @media only screen and (max-width: 1020px) {
   .content {

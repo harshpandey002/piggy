@@ -29,34 +29,39 @@ export default function Transaction() {
           </div>
           <div className={` box ${styles.right}`}>
             <div className={styles.input}>
+              <p>By category</p>
               <Select
                 styles={dropStyles}
                 options={categoryOp}
                 theme={getTheme}
                 value={category}
+                isClearable
                 onChange={setCategory}
                 isSearchable={false}
                 placeholder="Select Category"
               />
             </div>
             <div className={styles.input}>
+              <p>By note</p>
               <input
                 type="search"
                 value={keyword}
+                placeholder="By keyword"
                 onChange={(e) => setKeyword(e.target.value)}
               />
             </div>
             <div className={styles.input}>
+              <p>By amount</p>
               <ReactSlider
-                className="horizontal-slider"
-                thumbClassName="example-thumb"
-                trackClassName="example-track"
+                className={styles.sliderContainer}
+                thumbClassName={styles.sliderThumb}
+                onChange={(value, index) =>
+                  console.log(`onChange: ${JSON.stringify({ value, index })}`)
+                }
+                trackClassName={styles.sliderTrack}
                 defaultValue={[0, 100]}
                 ariaLabel={["Lower thumb", "Upper thumb"]}
                 ariaValuetext={(state) => `Thumb value ${state.valueNow}`}
-                renderThumb={(props, state) => (
-                  <div {...props}>{state.valueNow}</div>
-                )}
                 pearling
                 minDistance={10}
               />

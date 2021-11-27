@@ -25,7 +25,8 @@ export const dropStyles = {
   }),
   valueContainer: (provided, state) => ({
     ...provided,
-    cursor: "text",
+    padding: "0rem 0.5rem",
+    cursor: "pointer",
   }),
   indicatorsContainer: (provided, state) => ({
     ...provided,

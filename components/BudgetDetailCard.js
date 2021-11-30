@@ -1,15 +1,11 @@
-import styles from "@/styles/BudgetCard.module.css";
+import styles from "@/styles/BudgetDetailCard.module.css";
 import { numberWithCommas } from "@/util/util";
-import router from "next/router";
 
-export default function BudgetCard() {
+export default function BudgetDetailCard() {
   return (
-    <div
-      onClick={() => router.push("/budget/1234")}
-      className={` box ${styles.container}`}
-    >
+    <div className={` box ${styles.container}`}>
       <div className={styles.category}>
-        <p>Groceries</p>
+        <p>Food and Drinks</p>
       </div>
       <div className={styles.content}>
         <h2 className="tooltip" data-tooltip={`₹${numberWithCommas(7000)}`}>

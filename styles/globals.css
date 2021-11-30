@@ -107,10 +107,10 @@ a {
 
 .sliderTrack {
   background-color: var(--white-3);
-  height: 2px;
+  height: 4px;
 }
 
 .sliderTrack-1 {
   background-color: var(--white-5);
-  height: 2px;
+  height: 4px;
 }

@@ -80,6 +80,7 @@ a {
   --translate-y: calc(-100% - var(--arrow-size));
   content: attr(data-tooltip);
   font-size: 1rem;
+  font-weight: 400;
   color: var(--color);
   padding: 0.5rem;
   border-radius: 0.3rem;

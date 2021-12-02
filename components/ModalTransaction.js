@@ -81,7 +81,7 @@ const PreviewTransaction = ({ setEditMode, handleClose }) => {
     <div className={styles.previewContainer}>
       <div className={styles.header}>
         <div className={styles.left}>
-          <h4>Oct 27, 2021</h4>
+          <h3>Oct 27, 2021</h3>
           <p>Food and Drinks</p>
         </div>
         <div className={styles.right}>

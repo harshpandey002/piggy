@@ -95,7 +95,7 @@ export default function BudgetDetail() {
 const Transactions = ({ data }) => {
   return (
     <div className={styles.transaction}>
-      <div className={styles.category}>{data.category}</div>
+      {/* <div className={styles.category}>{data.category}</div> */}
       <div className={styles.date}>{data.date}</div>
       <div className={styles.desc}>{data.desc}</div>
       <div

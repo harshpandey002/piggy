@@ -9,6 +9,7 @@ import Filter from "@/components/Filter";
 export default function Transaction() {
   const [showModal, setShowModal] = useState(false);
   const [editMode, setEditMode] = useState(false);
+  const [transaction, setTransaction] = useState({});
 
   const handleAdd = () => {
     setEditMode(true);
@@ -34,6 +35,7 @@ export default function Transaction() {
                 data={data}
                 setEditMode={setEditMode}
                 setShowModal={setShowModal}
+                setTransaction={setTransaction}
               />
             ))}
           </div>
@@ -45,12 +47,14 @@ export default function Transaction() {
         show={showModal}
         onClose={() => setShowModal(false)}
         setEditMode={setEditMode}
+        transaction={transaction}
+        setTransaction={setTransaction}
       />
     </Layout>
   );
 }
 
-const Transactions = ({ data, setEditMode, setShowModal }) => {
+const Transactions = ({ data, setEditMode, setShowModal, setTransaction }) => {
   const handleClick = () => {
     setEditMode(false);
     setShowModal(true);

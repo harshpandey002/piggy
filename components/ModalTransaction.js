@@ -7,6 +7,8 @@ export default function ModalTransaction({
   onClose,
   editMode,
   setEditMode,
+  setTransaction,
+  transaction,
 }) {
   const [isBrowser, setIsBrowser] = useState(false);
   useEffect(() => {
@@ -21,15 +23,18 @@ export default function ModalTransaction({
 
   const modalContent = show ? (
     <>
-      <div className={styles.overlay} />
+      <div className={styles.overlay} onClick={handleClose} />
       <div className={` box ${styles.modal}`}>
         {editMode ? (
           <EditTransaction
             handleClose={handleClose}
             setEditMode={setEditMode}
+            transaction={transaction}
+            setTransaction={setTransaction}
           />
         ) : (
           <PreviewTransaction
+            transaction={transaction}
             handleClose={handleClose}
             setEditMode={setEditMode}
           />

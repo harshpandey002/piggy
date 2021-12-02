@@ -6,6 +6,7 @@ import Select from "react-select";
 import ReactSlider from "react-slider";
 import { dropStyles, getTheme, categoryOp } from "@/util/common";
 import { DateRange } from "react-date-range";
+import ModalTransaction from "@/components/ModalTransaction";
 
 export default function Transaction() {
   const [keyword, setKeyword] = useState("");
@@ -17,6 +18,8 @@ export default function Transaction() {
       key: "selection",
     },
   ]);
+  const [showModal, setShowModal] = useState(true);
+
   return (
     <Layout>
       <div className={styles.container}>
@@ -82,6 +85,7 @@ export default function Transaction() {
           </div>
         </div>
       </div>
+      <ModalTransaction show={showModal} onClose={() => setShowModal(false)} />
     </Layout>
   );
 }

@@ -11,13 +11,13 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  max-width: 500px;
 }
 
 .previewContainer {
   display: flex;
   flex-direction: column;
   gap: 10px;
+  max-width: 500px;
 }
 
 .header {
@@ -50,6 +50,71 @@
 .description p {
   font-size: 1.2rem;
   color: var(--black-3);
+}
+
+.editContainer {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.toggle {
+  width: max-content;
+  margin-left: auto;
+}
+
+.toggle label,
+.flex label {
+  cursor: pointer;
+  border-radius: 5px;
+  padding: 0.3rem 0.6rem;
+}
+
+.toggle label {
+  font-size: 1.2rem;
+}
+
+.flex label {
+  font-size: 1rem;
+}
+
+.toggle label:hover,
+.flex label:hover {
+  background-color: var(--white-2);
+}
+
+.toggle input,
+.flex input {
+  display: none;
+}
+
+.inputGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.inputGroup input,
+.inputGroup textarea {
+  /* width: 350px; */
+  min-width: 350px;
+  max-width: 100%;
+  padding: 0.5rem 0.6rem;
+  font-size: 1rem;
+  border: 1px solid var(--white-6);
+  outline: none;
+}
+
+.inputGroup textarea {
+  max-height: 200px;
+  min-height: 80px;
 }
 
 .cta,

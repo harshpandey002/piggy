@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import ReactDOM from "react-dom";
 import styles from "@/styles/ModalTransaction.module.css";
+import { motion, AnimateSharedLayout } from "framer-motion";
 
 export default function ModalTransaction({
   show,
@@ -22,9 +23,9 @@ export default function ModalTransaction({
   };
 
   const modalContent = show ? (
-    <>
+    <AnimateSharedLayout>
       <div className={styles.overlay} onClick={handleClose} />
-      <div className={` box ${styles.modal}`}>
+      <div className={` ${styles.modal}`}>
         {editMode ? (
           <EditTransaction
             handleClose={handleClose}
@@ -40,7 +41,7 @@ export default function ModalTransaction({
           />
         )}
       </div>
-    </>
+    </AnimateSharedLayout>
   ) : null;
 
   if (isBrowser) {
@@ -58,27 +59,44 @@ const EditTransaction = ({ setEditMode, handleClose }) => {
     e.preventDefault();
     setEditMode(false);
   };
-
   return (
-    <div className={styles.editContainer}>
-      <div className={styles.toggle}></div>
+    <motion.div layoutId="23" className={` box  ${styles.editContainer}`}>
+      <div className={styles.toggle}>
+        <label htmlFor="gain">Gain</label>
+        <input name="gain" type="radio" />
+        <label htmlFor="loose">Loose</label>
+        <input name="gain" type="radio" />
+      </div>
       <form onSubmit={handleSubmit} className={styles.form}>
         <div className={styles.inputGroup}>
-          <label htmlFor="amount"></label>
-          <input id="amount" type="text" />
+          <label htmlFor="type">Transaction Type</label>
+          <div className={styles.flex}>
+            <label htmlFor="necessary">Necessary</label>
+            <input name="type" type="radio" />
+            <label htmlFor="unnecessary">Unnecessary</label>
+            <input name="type" type="radio" />
+          </div>
+        </div>
+        <div className={styles.inputGroup}>
+          <label htmlFor="amount">How much did you loose?</label>
+          <input id="amount" type="text" placeholder="Enter amount" />
+        </div>
+        <div className={styles.inputGroup}>
+          <label htmlFor="desc">Description</label>
+          <textarea id="desc" placeholder="Type here . . ." />
         </div>
         <div className={styles.cta}>
           <button onClick={handleClose}>Discard</button>
           <button>Submit</button>
         </div>
       </form>
-    </div>
+    </motion.div>
   );
 };
 
 const PreviewTransaction = ({ setEditMode, handleClose }) => {
   return (
-    <div className={styles.previewContainer}>
+    <motion.div layoutId="23" className={` box ${styles.previewContainer}`}>
       <div className={styles.header}>
         <div className={styles.left}>
           <h3>Oct 27, 2021</h3>
@@ -99,6 +117,6 @@ const PreviewTransaction = ({ setEditMode, handleClose }) => {
         <button onClick={handleClose}>Close</button>
         <button onClick={() => setEditMode(true)}>Edit Transaction</button>
       </div>
-    </div>
+    </motion.div>
   );
 };

@@ -24,7 +24,9 @@
 }
 
 html,
-body {
+body,
+input,
+textarea {
   font-family: "Poppins", sans-serif;
   color: var(--black-2);
 }

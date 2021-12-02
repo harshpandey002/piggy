@@ -2,9 +2,13 @@ import { useState, useEffect } from "react";
 import ReactDOM from "react-dom";
 import styles from "@/styles/ModalTransaction.module.css";
 
-export default function ModalTransaction({ show, onClose, edit }) {
+export default function ModalTransaction({
+  show,
+  onClose,
+  editMode,
+  setEditMode,
+}) {
   const [isBrowser, setIsBrowser] = useState(false);
-  const [editMode, setEditMode] = useState(edit);
   useEffect(() => {
     setIsBrowser(true);
   }, []);

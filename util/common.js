@@ -1,4 +1,4 @@
-export const dropStyles = {
+export const dropStyles1 = {
   option: (provided, state) => ({
     ...provided,
   }),
@@ -26,6 +26,43 @@ export const dropStyles = {
   valueContainer: (provided, state) => ({
     ...provided,
     padding: "0rem 0.5rem",
+    cursor: "pointer",
+  }),
+  indicatorsContainer: (provided, state) => ({
+    ...provided,
+  }),
+};
+
+export const dropStyles2 = {
+  option: (provided, state) => ({
+    ...provided,
+  }),
+  menuList: (provided, state) => ({
+    ...provided,
+    // maxHeight: 200,
+  }),
+  control: (provided, state) => ({
+    ...provided,
+    border: "none",
+    borderBottom: "1px solid #cccccc",
+    borderRadius: 0,
+    boxShadow: "none",
+    fontSize: "1.6rem",
+    "&:focus": {
+      boxShadow: "none",
+    },
+    "&:hover": {
+      borderColor: "#8a8a8a",
+    },
+  }),
+
+  container: (provided, state) => ({
+    ...provided,
+    width: "100%",
+  }),
+  valueContainer: (provided, state) => ({
+    ...provided,
+    padding: "0rem 0.3rem",
     cursor: "pointer",
   }),
   indicatorsContainer: (provided, state) => ({

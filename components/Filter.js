@@ -2,7 +2,7 @@ import { useState } from "react";
 import styles from "@/styles/Filter.module.css";
 import Select from "react-select";
 import ReactSlider from "react-slider";
-import { dropStyles, getTheme, categoryOp } from "@/util/common";
+import { dropStyles1, getTheme, categoryOp } from "@/util/common";
 import { DateRange } from "react-date-range";
 
 export default function Filter() {
@@ -20,7 +20,7 @@ export default function Filter() {
       <div className={styles.input}>
         <p>By category</p>
         <Select
-          styles={dropStyles}
+          styles={dropStyles1}
           options={categoryOp}
           theme={getTheme}
           value={category}

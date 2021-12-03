@@ -1,10 +1,13 @@
 import { useState } from "react";
 import styles from "@/styles/EditTransaction.module.css";
-import { motion, AnimateSharedLayout } from "framer-motion";
+import { motion } from "framer-motion";
+import { dropStyles2, getTheme, categoryOp } from "@/util/common";
+import Select from "react-select";
 
 export default function EditTransaction({ setEditMode, handleClose }) {
   const [gain, setGain] = useState("loose");
   const [necessary, setNecessary] = useState(true);
+  const [category, setCategory] = useState([]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -46,6 +49,22 @@ export default function EditTransaction({ setEditMode, handleClose }) {
         onSubmit={handleSubmit}
         className={styles.form}
       >
+        <motion.div layoutId="e" className={styles.inputGroup}>
+          {/* <label className={styles.label} htmlFor="type">
+            Category
+          </label> */}
+          <Select
+            styles={dropStyles2}
+            options={categoryOp}
+            theme={getTheme}
+            value={category}
+            isClearable
+            onChange={setCategory}
+            isSearchable={false}
+            placeholder="Choose Category"
+          />
+        </motion.div>
+
         {gain == "loose" && (
           <motion.div
             initial={{ opacity: 0 }}

@@ -15,8 +15,6 @@ export default function Budget() {
         <BudgetCard />
         <BudgetCard />
         <BudgetCard />
-        <BudgetCard />
-        <BudgetCard />
         <NewBudget />
       </div>
     </Layout>
@@ -27,13 +25,15 @@ const NewBudget = () => {
   const [showModal, setShowModal] = useState(false);
 
   return (
-    <div
-      onClick={() => setShowModal(true)}
-      className={` box ${styles.content}`}
-    >
-      <AiOutlinePlus className={styles.plus} />
-      <p>Create new budget</p>
+    <>
+      <div
+        onClick={() => setShowModal(true)}
+        className={` box ${styles.content}`}
+      >
+        <AiOutlinePlus className={styles.plus} />
+        <p>Create new budget</p>
+      </div>
       <ModalBudget show={showModal} onClose={() => setShowModal(false)} />
-    </div>
+    </>
   );
 };

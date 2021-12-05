@@ -3,3 +3,27 @@
   flex-wrap: wrap;
   gap: 15px;
 }
+
+.content {
+  width: 250px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: var(--white-5);
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.plus {
+  color: var(--white-4);
+  font-size: 4rem;
+  transition: all 0.2s;
+}
+
+.content:hover {
+  color: var(--white-6);
+}
+.content:hover .plus {
+  color: var(--white-6);
+}

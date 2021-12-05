@@ -35,7 +35,7 @@ export default function Filter() {
         <input
           type="search"
           value={keyword}
-          placeholder="By keyword"
+          placeholder="Enter keyword"
           onChange={(e) => setKeyword(e.target.value)}
         />
       </div>

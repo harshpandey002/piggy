@@ -5,6 +5,8 @@ import Navlinks from "@/components/Navlinks";
 export default function Home() {
   return (
     <div className={styles.container}>
+      <div className={styles.blue} />
+      <div className={styles.green} />
       <Navlinks />
       <div className={styles.content}>
         <div className={styles.left}>
@@ -16,6 +18,7 @@ export default function Home() {
           <button>Get Started</button>
         </div>
         <div className={styles.right}>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
           <img src="/images/heroImage.png" alt="" />
         </div>
       </div>

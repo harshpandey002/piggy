@@ -2,6 +2,8 @@
   width: 100%;
   height: 100vh;
   background-color: #101010;
+  overflow: hidden;
+  position: relative;
 }
 
 .content {
@@ -45,11 +47,34 @@
 
 .right {
   width: 48%;
+  z-index: 1;
 }
 
 .right img {
   width: 100%;
   height: 100%;
+}
+
+.blue,
+.green {
+  position: absolute;
+  width: 500px;
+  height: 500px;
+  border-radius: 50%;
+  filter: blur(300px);
+}
+
+.blue {
+  background-color: #001561;
+  top: 0;
+  transform: translate(-50%, -50%);
+}
+
+.green {
+  background-color: #194100;
+  bottom: 0;
+  right: 0;
+  transform: translate(50%, 50%);
 }
 
 @media only screen and (max-width: 730px) {

@@ -47,7 +47,7 @@ export const dropStyles2 = {
     borderBottom: "1px solid #cccccc",
     borderRadius: 0,
     boxShadow: "none",
-    fontSize: "1.6rem",
+    fontSize: "1.4rem",
     "&:focus": {
       boxShadow: "none",
     },

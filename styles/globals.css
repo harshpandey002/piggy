@@ -117,3 +117,18 @@ a {
   background-color: var(--white-5);
   height: 4px;
 }
+
+.rdrDateDisplayWrapper {
+  background-color: transparent !important;
+}
+
+.rdrDateDisplayItem {
+  border: none !important;
+  background-color: transparent;
+}
+
+.rdrStartEdge,
+.rdrInRange,
+.rdrEndEdge {
+  background-color: var(--black-3) !important;
+}

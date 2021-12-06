@@ -4,10 +4,18 @@ import styles from "@/styles/ModalBudget.module.css";
 import { motion, AnimateSharedLayout } from "framer-motion";
 import Select from "react-select";
 import { dropStyles2, getTheme, categoryOp } from "@/util/common";
+import { DateRange } from "react-date-range";
 
 export default function ModalBudget({ show, onClose }) {
   const [isBrowser, setIsBrowser] = useState(false);
   const [category, setCategory] = useState([]);
+  const [state, setState] = useState([
+    {
+      startDate: new Date(),
+      endDate: new Date(),
+      key: "selection",
+    },
+  ]);
 
   useEffect(() => {
     setIsBrowser(true);
@@ -45,12 +53,26 @@ export default function ModalBudget({ show, onClose }) {
           </div>
 
           <div className={styles.inputGroup}>
+            <label className={styles.label} htmlFor="type">
+              Select time period
+            </label>
+            <DateRange
+              className={styles.wrapper}
+              editableDateInputs={true}
+              rangeColors={["#3d91ff", "#00000", "#fed14c"]}
+              onChange={(item) => setState([item.selection])}
+              moveRangeOnFirstSelection={false}
+              ranges={state}
+            />
+          </div>
+
+          <div className={styles.inputGroup}>
             <div className={styles.flex}></div>
           </div>
 
           <div className={styles.inputGroup}>
             <label className={styles.label} htmlFor="amount">
-              How much did you loose?
+              How much you want to spend?
             </label>
             <input id="amount" type="number" placeholder="Enter amount" />
           </div>

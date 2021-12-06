@@ -11,6 +11,8 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  width: 90%;
+  max-width: 380px;
 }
 
 .form {
@@ -92,4 +94,14 @@
 
 .submit:hover {
   background-color: var(--black-2);
+}
+
+.wrapper input {
+  border: none;
+  outline: none;
+  box-shadow: none;
+  min-width: initial;
+  width: 100%;
+  background-color: var(--black-3);
+  color: var(--white-1);
 }

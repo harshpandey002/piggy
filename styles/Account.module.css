@@ -56,18 +56,9 @@
 }
 
 .header h2 {
-  font-size: 3rem;
+  font-size: clamp(2rem, 6vw, 2.8rem);
   font-weight: 400;
   line-height: 1.3;
-}
-
-.header p {
-  color: var(--white-6);
-}
-
-.header p span {
-  color: var(--blue);
-  cursor: pointer;
 }
 
 .header p span:hover {
@@ -94,7 +85,13 @@
 }
 
 .inputGroup p {
-  display: none;
+  text-align: right;
+  color: var(--blue);
+  cursor: pointer;
+}
+
+.inputGroup p:hover {
+  text-decoration: underline;
 }
 
 .inputGroup input {
@@ -165,4 +162,18 @@
 .signup:hover::before,
 .login:hover::before {
   transform: translateX(-50%);
+}
+
+.cta p {
+  margin-top: 1rem;
+  color: var(--white-6);
+}
+
+.cta p span {
+  color: var(--blue);
+  cursor: pointer;
+}
+
+.cta p span:hover {
+  text-decoration: underline;
 }

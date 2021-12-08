@@ -15,24 +15,27 @@ export default function Login() {
       <div className={styles.content}>
         <div className={styles.header}>
           <h2>Login</h2>
-          <p>
-            Don{"'"}t have an account?{" "}
-            <Link href="/account/signup" passHref>
-              <span>Signup</span>
-            </Link>
-          </p>
         </div>
         <form onSubmit={handleSubmit} className={styles.form}>
           <div className={styles.inputGroup}>
-            <p>Email</p>
-            <input type="text" placeholder="E-mail" />
+            {/* <p>Email</p> */}
+            <input type="email" placeholder="E-mail" />
           </div>
           <div className={styles.inputGroup}>
-            <p>Password</p>
-            <input type="text" placeholder="Password" />
+            {/* <p>Password</p> */}
+            <input type="password" placeholder="Password" />
+            <Link href="/account/forgot" passHref>
+              <p>Forgot Password?</p>
+            </Link>
           </div>
           <div className={styles.cta}>
             <button className={styles.login}>Login</button>
+            <p>
+              Don{"'"}t have an account?{" "}
+              <Link href="/account/signup" passHref>
+                <span>Signup</span>
+              </Link>
+            </p>
           </div>
         </form>
       </div>

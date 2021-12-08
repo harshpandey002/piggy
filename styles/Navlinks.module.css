@@ -21,6 +21,7 @@
   align-items: center;
   justify-content: center;
   gap: 1.5rem;
+  list-style: none;
 }
 
 .login,
@@ -32,6 +33,7 @@
   font-size: 1.4rem;
   cursor: pointer;
   transition: all 0.2s;
+  z-index: 1;
 }
 
 .login {
@@ -49,7 +51,7 @@
 }
 
 .signup:hover {
-  background-color: #0066b0;
+  background-color: var(--blue);
 }
 
 @media only screen and (max-width: 730px) {

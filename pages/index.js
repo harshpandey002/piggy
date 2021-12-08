@@ -1,5 +1,5 @@
 import styles from "../styles/Home.module.css";
-import Link from "next/link";
+import router from "next/router";
 import Navlinks from "@/components/Navlinks";
 
 export default function Home() {
@@ -15,7 +15,9 @@ export default function Home() {
             Get addicted to managing money with this interactive and visually
             appealing piggy dashboard
           </p>
-          <button>Get Started</button>
+          <button onClick={() => router.push("/account/signup")}>
+            Get Started
+          </button>
         </div>
         <div className={styles.right}>
           {/* eslint-disable-next-line @next/next/no-img-element */}

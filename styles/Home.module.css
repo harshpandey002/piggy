@@ -36,13 +36,18 @@
   margin-top: 15px;
   width: max-content;
   padding: 0.8rem 1.4rem;
-  background-color: #0066b0;
+  background-color: var(--blue);
   color: white;
   font-size: 1.4rem;
   border: none;
   border-radius: 5px;
   outline: none;
+  transition: all 0.2s;
   cursor: pointer;
+}
+
+.left button:hover {
+  background-color: #338600;
 }
 
 .right {

@@ -1,8 +1,10 @@
+import { useState } from "react";
 import Navlinks from "@/components/Navlinks";
 import styles from "@/styles/Account.module.css";
 import Link from "next/link";
 
 export default function Forgot() {
+  const [error, setError] = useState("");
   const handleSubmit = (e) => {
     e.preventDefault();
   };
@@ -23,13 +25,14 @@ export default function Forgot() {
           </div>
 
           <div className={styles.cta}>
+            {error && <p className={styles.error}>{error}</p>}
             <button className={styles.login}>Send Link</button>
-            <p>
+            {/* <p>
               <Link href="/account/login" passHref>
                 <span>Login</span>
               </Link>{" "}
               instead
-            </p>
+            </p> */}
           </div>
         </form>
       </div>

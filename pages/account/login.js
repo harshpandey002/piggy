@@ -1,8 +1,10 @@
+import { useState } from "react";
 import Navlinks from "@/components/Navlinks";
 import styles from "@/styles/Account.module.css";
 import Link from "next/link";
 
 export default function Login() {
+  const [error, setError] = useState("");
   const handleSubmit = (e) => {
     e.preventDefault();
   };
@@ -29,6 +31,7 @@ export default function Login() {
             </Link>
           </div>
           <div className={styles.cta}>
+            {error && <p className={styles.error}>{error}</p>}
             <button className={styles.login}>Login</button>
             <p>
               Don{"'"}t have an account?{" "}

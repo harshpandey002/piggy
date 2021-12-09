@@ -1,8 +1,11 @@
+import { useState } from "react";
 import Navlinks from "@/components/Navlinks";
 import styles from "@/styles/Account.module.css";
 import Link from "next/link";
 
 export default function Signup() {
+  const [error, setError] = useState("");
+  const [success, setSuccess] = useState("");
   const handleSubmit = (e) => {
     e.preventDefault();
   };
@@ -36,6 +39,8 @@ export default function Signup() {
             <input type="password" placeholder="Password" />
           </div>
           <div className={styles.cta}>
+            {error && <p className={styles.error}>{error}</p>}
+            {success && <p className={styles.success}>{success}</p>}
             <button className={styles.signup}>Signup</button>
             <p>
               Already have an account?{" "}

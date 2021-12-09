@@ -164,6 +164,21 @@
   transform: translateX(-50%);
 }
 
+.error,
+.success {
+  margin-top: -1rem !important;
+  margin-bottom: 0.25rem;
+  text-align: left;
+  font-weight: 300;
+}
+
+.success {
+  color: rgb(0, 172, 0) !important;
+}
+.error {
+  color: rgb(255, 87, 87) !important;
+}
+
 .cta p {
   margin-top: 1rem;
   color: var(--white-6);

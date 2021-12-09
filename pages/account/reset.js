@@ -5,8 +5,31 @@ import Link from "next/link";
 
 export default function Reset() {
   const [error, setError] = useState("");
+  const [pass, setPass] = useState("");
+  const [c_pass, setC_pass] = useState("");
+
+  const validate = () => {
+    setError("");
+    try {
+      if (!pass) {
+        throw "Enter password";
+      }
+      if (!c_pass) {
+        throw "Confirm password";
+      }
+      if (pass !== c_pass) {
+        throw "Passwords do not match";
+      }
+      return true;
+    } catch (err) {
+      setError(err);
+      return false;
+    }
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
+    if (!validate()) return;
   };
 
   return (
@@ -20,10 +43,20 @@ export default function Reset() {
         </div>
         <form onSubmit={handleSubmit} className={styles.form}>
           <div className={styles.inputGroup}>
-            <input type="password" placeholder="New password" />
+            <input
+              type="password"
+              placeholder="New password"
+              value={pass}
+              onChange={(e) => setPass(e.target.value)}
+            />
           </div>
           <div className={styles.inputGroup}>
-            <input type="password" placeholder="Confirm password" />
+            <input
+              type="password"
+              placeholder="Confirm password"
+              value={c_pass}
+              onChange={(e) => setC_pass(e.target.value)}
+            />
           </div>
           <div className={styles.cta}>
             {error && <p className={styles.error}>{error}</p>}

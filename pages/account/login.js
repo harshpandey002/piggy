@@ -5,8 +5,37 @@ import Link from "next/link";
 
 export default function Login() {
   const [error, setError] = useState("");
+  const [formData, setFormData] = useState({
+    email: "",
+    password: "",
+  });
+
+  const validate = () => {
+    setError("");
+    try {
+      if (!formData.email) {
+        throw "Enter your email";
+      }
+      if (!formData.password) {
+        throw "Enter password";
+      }
+      return true;
+    } catch (err) {
+      setError(err);
+      return false;
+    }
+  };
+
+  const handleChange = (e) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value,
+    });
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
+    if (!validate()) return;
   };
 
   return (
@@ -21,11 +50,23 @@ export default function Login() {
         <form onSubmit={handleSubmit} className={styles.form}>
           <div className={styles.inputGroup}>
             {/* <p>Email</p> */}
-            <input type="email" placeholder="E-mail" />
+            <input
+              type="email"
+              placeholder="E-mail"
+              name="email"
+              value={formData.email}
+              onChange={handleChange}
+            />
           </div>
           <div className={styles.inputGroup}>
             {/* <p>Password</p> */}
-            <input type="password" placeholder="Password" />
+            <input
+              type="password"
+              placeholder="Password"
+              name="password"
+              value={formData.password}
+              onChange={handleChange}
+            />
             <Link href="/account/forgot" passHref>
               <p>Forgot Password?</p>
             </Link>

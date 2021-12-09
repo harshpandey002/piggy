@@ -26,7 +26,7 @@ export default function Signup() {
       if (!formData.email) {
         throw "Enter your email";
       }
-      if (!formData.first) {
+      if (!formData.password) {
         throw "Enter password";
       }
       return true;

@@ -5,8 +5,13 @@ import Link from "next/link";
 
 export default function Forgot() {
   const [error, setError] = useState("");
+  const [email, setEmail] = useState("");
   const handleSubmit = (e) => {
     e.preventDefault();
+    if (!email) {
+      setError("Enter email");
+      return;
+    }
   };
 
   return (
@@ -21,7 +26,12 @@ export default function Forgot() {
         <form onSubmit={handleSubmit} className={styles.form}>
           <div className={styles.inputGroup}>
             {/* <p>Email</p> */}
-            <input type="email" placeholder="E-mail" />
+            <input
+              type="email"
+              placeholder="E-mail"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+            />
           </div>
 
           <div className={styles.cta}>

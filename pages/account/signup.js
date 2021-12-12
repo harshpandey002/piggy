@@ -51,6 +51,8 @@ export default function Signup() {
     if (res.ok) {
       console.log(data);
       setSuccess(data.message);
+    } else {
+      setError(data.error);
     }
   };
 

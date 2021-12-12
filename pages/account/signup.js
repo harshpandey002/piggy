@@ -2,6 +2,7 @@ import { useState } from "react";
 import Navlinks from "@/components/Navlinks";
 import styles from "@/styles/Account.module.css";
 import Link from "next/link";
+import baseUrl from "@/helpers/baseUrl";
 
 export default function Signup() {
   const [error, setError] = useState("");
@@ -36,9 +37,21 @@ export default function Signup() {
     }
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (!validate()) return;
+    const res = await fetch(baseUrl + "signup", {
+      method: "POST",
+      "Content-Type": "application/json",
+      body: JSON.stringify(formData),
+    });
+
+    const data = await res.json();
+
+    if (res.ok) {
+      console.log(data);
+      setSuccess(data.message);
+    }
   };
 
   const handleChange = (e) => {

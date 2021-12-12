@@ -5,7 +5,7 @@ import mongoose from "mongoose";
 
 const initDB = () => {
   if (mongoose.connections[0].readyState) {
-    console.log("alredy connected");
+    console.log("already connected");
     return;
   }
   mongoose.connect(process.env.MONGO_URI, {

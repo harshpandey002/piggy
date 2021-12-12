@@ -34,9 +34,22 @@ export default function Login() {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (!validate()) return;
+    const res = await fetch(baseUrl + "login", {
+      method: "POST",
+      "Content-Type": "application/json",
+      body: JSON.stringify(formData),
+    });
+
+    const data = await res.json();
+
+    if (res.ok) {
+      console.log(data);
+    } else {
+      setError(data.error);
+    }
   };
 
   return (

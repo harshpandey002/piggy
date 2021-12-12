@@ -3,6 +3,8 @@ import Navlinks from "@/components/Navlinks";
 import styles from "@/styles/Account.module.css";
 import Link from "next/link";
 import baseUrl from "@/helpers/baseUrl";
+import Cookies from "js-cookie";
+import router from "next/router";
 
 export default function Login() {
   const [error, setError] = useState("");
@@ -46,7 +48,9 @@ export default function Login() {
     const data = await res.json();
 
     if (res.ok) {
-      console.log(data);
+      Cookies.set("token", data.token);
+      Cookies.set("user", data.user);
+      router.push("/dashboard");
     } else {
       setError(data.error);
     }

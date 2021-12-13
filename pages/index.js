@@ -1,6 +1,7 @@
 import styles from "../styles/Home.module.css";
 import router from "next/router";
 import Navlinks from "@/components/Navlinks";
+import { parseCookies } from "nookies";
 
 export default function Home() {
   return (
@@ -26,4 +27,19 @@ export default function Home() {
       </div>
     </div>
   );
+}
+
+export async function getServerSideProps(ctx) {
+  const { token } = parseCookies(ctx);
+  if (!!token) {
+    return {
+      redirect: {
+        permanent: false,
+        destination: "/dashboard",
+      },
+    };
+  }
+  return {
+    props: {},
+  };
 }

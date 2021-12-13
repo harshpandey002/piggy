@@ -5,6 +5,7 @@ import { transactions } from "@/util/content";
 
 import ModalTransaction from "@/components/ModalTransaction";
 import Filter from "@/components/Filter";
+import { parseCookies } from "nookies";
 
 export default function Transaction() {
   const [showModal, setShowModal] = useState(false);
@@ -75,3 +76,18 @@ const Transactions = ({ data, setEditMode, setShowModal, setTransaction }) => {
     </div>
   );
 };
+
+export async function getServerSideProps(ctx) {
+  const { token } = parseCookies(ctx);
+  if (!token) {
+    return {
+      redirect: {
+        permanent: false,
+        destination: "/",
+      },
+    };
+  }
+  return {
+    props: {},
+  };
+}

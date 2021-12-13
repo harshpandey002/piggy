@@ -5,6 +5,7 @@ import Graph from "@/components/Graph";
 import BudgetOverview from "@/components/BudgetOverview";
 import Recent from "@/components/Recent";
 import Future from "@/components/Future";
+import { parseCookies } from "nookies";
 
 export default function Dashboard() {
   return (
@@ -22,4 +23,19 @@ export default function Dashboard() {
       </div>
     </Layout>
   );
+}
+
+export async function getServerSideProps(ctx) {
+  const { token } = parseCookies(ctx);
+  if (!token) {
+    return {
+      redirect: {
+        permanent: false,
+        destination: "/",
+      },
+    };
+  }
+  return {
+    props: {},
+  };
 }

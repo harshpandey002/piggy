@@ -4,6 +4,7 @@ import Layout from "@/components/Layout";
 import styles from "@/styles/Budget.module.css";
 import { AiOutlinePlus } from "react-icons/ai";
 import ModalBudget from "@/components/ModalBudget";
+import { parseCookies } from "nookies";
 
 export default function Budget() {
   return (
@@ -37,3 +38,18 @@ const NewBudget = () => {
     </>
   );
 };
+
+export async function getServerSideProps(ctx) {
+  const { token } = parseCookies(ctx);
+  if (!token) {
+    return {
+      redirect: {
+        permanent: false,
+        destination: "/",
+      },
+    };
+  }
+  return {
+    props: {},
+  };
+}

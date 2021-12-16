@@ -1,18 +1,56 @@
 import { useState } from "react";
 import styles from "@/styles/EditTransaction.module.css";
+import { parseCookies } from "nookies";
 import { motion } from "framer-motion";
 import { dropStyles2, getTheme, categoryOp } from "@/util/common";
 import Select from "react-select";
+import baseUrl from "@/helpers/baseUrl";
 
 export default function EditTransaction({ setEditMode, handleClose }) {
   const [gain, setGain] = useState("loose");
   const [necessary, setNecessary] = useState(true);
   const [category, setCategory] = useState([]);
+  const [amount, setAmount] = useState();
+  const [note, setNote] = useState("");
+  const { token } = parseCookies();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    setEditMode(false);
+
+    console.log("sdfsd");
+
+    const bodyObj = {
+      gain: "gain" ? true : false,
+      category: category.value,
+      necessary,
+      amount: Number(amount),
+      note,
+    };
+
+    const res = await fetch(baseUrl + "transaction", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: token,
+      },
+      body: JSON.stringify(bodyObj),
+    });
+
+    const data = await res.json();
+
+    if (res.ok) {
+      console.log(data);
+    } else {
+      console.log(data.error);
+    }
+
+    // setEditMode(false);
   };
+
+  const setValue = (fn) => (e) => {
+    fn(e.target.value);
+  };
+
   return (
     <motion.div layoutId="12" className={` box  ${styles.editContainer}`}>
       <div className={styles.toggle}>
@@ -115,13 +153,20 @@ export default function EditTransaction({ setEditMode, handleClose }) {
             id="amount"
             type="number"
             placeholder="Enter amount"
+            value={amount}
+            onChange={setValue(setAmount)}
           />
         </motion.div>
         <motion.div layoutId="c" className={styles.inputGroup}>
           <label className={styles.label} htmlFor="desc">
-            Description
+            note
           </label>
-          <textarea id="desc" placeholder="Type here . . ." />
+          <textarea
+            id="desc"
+            placeholder="Type here . . ."
+            value={note}
+            onChange={setValue(setNote)}
+          />
         </motion.div>
         <div className={styles.cta}>
           <button onClick={handleClose}>Discard</button>

@@ -41,7 +41,9 @@ export default function Login() {
     if (!validate()) return;
     const res = await fetch(baseUrl + "login", {
       method: "POST",
-      "Content-Type": "application/json",
+      headers: {
+        "Content-Type": "application/json",
+      },
       body: JSON.stringify(formData),
     });
 

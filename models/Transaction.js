@@ -2,11 +2,11 @@ import mongoose from "mongoose";
 
 const transactionSchema = mongoose.Schema(
   {
-    user: {
-      type: mongoose.ObjectId,
+    userId: {
+      type: mongoose.SchemaTypes.ObjectId,
       ref: "User",
     },
-    trnasactions: [
+    transactions: [
       {
         type: new mongoose.Schema(
           {

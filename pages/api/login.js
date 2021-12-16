@@ -6,7 +6,7 @@ import bcrypt from "bcryptjs";
 initDB();
 
 const login = async (req, res) => {
-  const { email, password } = JSON.parse(req.body);
+  const { email, password } = req.body;
   try {
     const user = await User.findOne({ email });
     const error = "Email or password do not match";

@@ -17,10 +17,8 @@ export default function EditTransaction({ setEditMode, handleClose }) {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    console.log("sdfsd");
-
     const bodyObj = {
-      gain: "gain" ? true : false,
+      gain: gain == "gain" ? true : false,
       category: category.value,
       necessary,
       amount: Number(amount),
@@ -39,7 +37,7 @@ export default function EditTransaction({ setEditMode, handleClose }) {
     const data = await res.json();
 
     if (res.ok) {
-      console.log(data);
+      handleClose();
     } else {
       console.log(data.error);
     }

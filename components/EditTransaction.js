@@ -151,7 +151,7 @@ export default function EditTransaction({
           <label className={styles.label} htmlFor="amount">
             How much did you loose?
           </label>
-          <input
+          <motion.input
             style={{ color: `${gain == "gain" ? "#59bb1c" : "#fa634e"}` }}
             id="amount"
             type="number"

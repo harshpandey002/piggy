@@ -87,6 +87,7 @@ const TransactionInfo = ({
   setTransaction,
 }) => {
   const handleClick = () => {
+    setTransaction(data);
     setEditMode(false);
     setShowModal(true);
   };
@@ -95,7 +96,7 @@ const TransactionInfo = ({
     <div onClick={handleClick} className={styles.transaction}>
       <div className={styles.category}>{data.category}</div>
       <div className={styles.date}>
-        {moment(data.createdAt).format("MMM Do YYYY")}
+        {moment(data.createdAt).format("MMM DD YYYY")}
       </div>
       <div className={styles.desc}>{data.note}</div>
       <div

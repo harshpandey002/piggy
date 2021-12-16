@@ -3,6 +3,7 @@ import ReactDOM from "react-dom";
 import styles from "@/styles/ModalTransaction.module.css";
 import { motion, AnimateSharedLayout } from "framer-motion";
 import EditTransaction from "./EditTransaction";
+import moment from "moment";
 
 export default function ModalTransaction({
   show,
@@ -58,25 +59,21 @@ export default function ModalTransaction({
   }
 }
 
-const PreviewTransaction = ({ setEditMode, handleClose }) => {
+const PreviewTransaction = ({ setEditMode, handleClose, transaction }) => {
   return (
     <motion.div layoutId="12" className={` box ${styles.previewContainer}`}>
       <div className={styles.header}>
         <div className={styles.left}>
-          <h3>Oct 27, 2021</h3>
-          <p>Food and Drinks</p>
+          <h3>{moment(transaction.createdAt).format("MMM DD YYYY")}</h3>
+          <motion.p layoutId="e">{transaction.category}</motion.p>
         </div>
-        <div className={styles.right}>
-          <h3>4500</h3>
-        </div>
+        <motion.div layoutId="b" className={styles.right}>
+          <h3>{transaction.amount}</h3>
+        </motion.div>
       </div>
-      <div className={styles.description}>
-        <p>
-          Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nihil
-          reprehenderit in, labore debitis aspernatur expedita incidunt quia aut
-          explicabo natus!
-        </p>
-      </div>
+      <motion.div layoutId="c" className={styles.description}>
+        <p>{transaction.note}</p>
+      </motion.div>
       <div className={styles.btn}>
         <button onClick={handleClose}>Close</button>
         <button onClick={() => setEditMode(true)}>Edit Transaction</button>

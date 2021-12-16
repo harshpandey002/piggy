@@ -6,7 +6,11 @@ import { dropStyles2, getTheme, categoryOp } from "@/util/common";
 import Select from "react-select";
 import baseUrl from "@/helpers/baseUrl";
 
-export default function EditTransaction({ setEditMode, handleClose }) {
+export default function EditTransaction({
+  setEditMode,
+  handleClose,
+  getTransactions,
+}) {
   const [gain, setGain] = useState("loose");
   const [necessary, setNecessary] = useState(true);
   const [category, setCategory] = useState([]);
@@ -37,7 +41,8 @@ export default function EditTransaction({ setEditMode, handleClose }) {
     const data = await res.json();
 
     if (res.ok) {
-      handleClose();
+      getTransactions();
+      handleClose(e);
     } else {
       console.log(data.error);
     }

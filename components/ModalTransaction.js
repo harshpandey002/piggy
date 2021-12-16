@@ -11,6 +11,7 @@ export default function ModalTransaction({
   setEditMode,
   setTransaction,
   transaction,
+  getTransactions,
 }) {
   const [isBrowser, setIsBrowser] = useState(false);
 
@@ -34,6 +35,7 @@ export default function ModalTransaction({
             setEditMode={setEditMode}
             transaction={transaction}
             setTransaction={setTransaction}
+            getTransactions={getTransactions}
           />
         ) : (
           <PreviewTransaction

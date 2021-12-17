@@ -1,6 +1,5 @@
 import initDB from "@/helpers/initDb";
 import User from "@/models/User";
-import Transaction from "@/models/Transaction";
 import bcrypt from "bcryptjs";
 
 initDB();
@@ -21,7 +20,6 @@ const signup = async (req, res) => {
       email,
       password: hashedPass,
     }).save();
-    await new Transaction({ userId: newUser._id }).save();
     res.status(201).json({ message: "Signup success" });
   } catch (err) {
     console.log(err);

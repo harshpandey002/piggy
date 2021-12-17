@@ -1,13 +1,13 @@
 import initDB from "@/helpers/initDb";
 import Transaction from "../../models/Transaction";
 import Authenticate from "@/helpers/authenticate";
+import chalk from "chalk";
 
 initDB();
 
 const getTransactions = Authenticate(async (req, res) => {
   try {
-    const data = await Transaction.find({ userId: req.userId });
-    const transactions = data[0].transactions.reverse();
+    const transactions = await Transaction.find({ userId: req.userId });
     res.status(200).json({ transactions });
   } catch (e) {
     res.status(400).json({ error: e });
@@ -15,13 +15,15 @@ const getTransactions = Authenticate(async (req, res) => {
 });
 
 const createTransaction = Authenticate(async (req, res) => {
-  const body = req.body;
+  const { userId, body } = req;
   try {
-    const transaction = await Transaction.findOne({ userId: req.userId });
-    transaction.transactions.push(body);
-    transaction.save();
+    const newTransaction = await new Transaction({
+      userId,
+      ...body,
+    }).save();
 
-    res.status(200).json({ transaction: body });
+    console.log(chalk.inverse(newTransaction));
+    res.status(200).json({ transaction: newTransaction });
   } catch (e) {
     res.status(400).json({ error: e });
   }

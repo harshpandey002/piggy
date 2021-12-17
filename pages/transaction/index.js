@@ -34,9 +34,12 @@ export default function Transaction() {
     });
     const data = await res.json();
 
+    console.log("%c Get all transactions", "color: yellow");
     if (res.ok) {
+      console.log("%c" + data.transactions, "color: green");
       setTransactions(data.transactions);
     } else {
+      console.log("%c Error", "color: red");
       console.log(data.error);
     }
   };

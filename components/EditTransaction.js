@@ -8,6 +8,7 @@ import baseUrl from "@/helpers/baseUrl";
 
 export default function EditTransaction({
   editMode,
+  //TODO Cleanup
   setEditMode,
   handleClose,
   transaction,
@@ -57,23 +58,28 @@ export default function EditTransaction({
     return bodyObj;
   };
 
+  //TODO Create validation function
+
   const updateTrasaction = async (e) => {
-    // const bodyObj = getBodyObj()
-    // const res = await fetch(baseUrl + "transaction", {
-    //   method: "PATCH",
-    //   headers: {
-    //     "Content-Type": "application/json",
-    //     Authorization: token,
-    //   },
-    //   body: JSON.stringify(bodyObj),
-    // });
-    // const data = await res.json();
-    // if (res.ok) {
-    //   getTransactions();
-    //   handleClose(e);
-    // } else {
-    //   console.log(data.error);
-    // }
+    const bodyObj = getBodyObj();
+    bodyObj._id = transaction._id;
+
+    const res = await fetch(baseUrl + "transaction", {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: token,
+      },
+      body: JSON.stringify(bodyObj),
+    });
+    const data = await res.json();
+    if (res.ok) {
+      console.log(data.message);
+      getTransactions();
+      handleClose(e);
+    } else {
+      console.log(data.error);
+    }
   };
 
   const createTransaction = async (e) => {

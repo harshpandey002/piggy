@@ -152,6 +152,7 @@ export default function EditTransaction({
             styles={dropStyles2}
             options={gain == "gain" ? incomeOp : expenseOp}
             theme={getTheme}
+            //TODO Clear value when "gain" is changed
             value={category}
             isClearable
             onChange={setCategory}

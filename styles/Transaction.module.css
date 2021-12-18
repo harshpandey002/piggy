@@ -82,14 +82,6 @@
   font-weight: 600;
 }
 
-.green {
-  color: var(--green);
-}
-
-.red {
-  color: var(--red);
-}
-
 @media only screen and (max-width: 1020px) {
   .content {
     flex-direction: column;

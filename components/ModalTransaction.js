@@ -30,9 +30,10 @@ export default function ModalTransaction({
     <AnimateSharedLayout>
       <div className={styles.overlay} onClick={handleClose} />
       <div className={` ${styles.modal}`}>
-        {editMode ? (
+        {!!editMode ? (
           <EditTransaction
             handleClose={handleClose}
+            editMode={editMode}
             setEditMode={setEditMode}
             transaction={transaction}
             setTransaction={setTransaction}
@@ -67,7 +68,10 @@ const PreviewTransaction = ({ setEditMode, handleClose, transaction }) => {
           <h3>{moment(transaction.createdAt).format("MMM DD YYYY")}</h3>
           <motion.p layoutId="e">{transaction.category}</motion.p>
         </div>
-        <motion.div layoutId="b" className={styles.right}>
+        <motion.div
+          layoutId="b"
+          className={`${styles.right} ${transaction.gain ? "green" : "red"} `}
+        >
           <h3>{transaction.amount}</h3>
         </motion.div>
       </div>
@@ -76,7 +80,7 @@ const PreviewTransaction = ({ setEditMode, handleClose, transaction }) => {
       </motion.div>
       <div className={styles.btn}>
         <button onClick={handleClose}>Close</button>
-        <button onClick={() => setEditMode(true)}>Edit Transaction</button>
+        <button onClick={() => setEditMode("Edit")}>Edit Transaction</button>
       </div>
     </motion.div>
   );

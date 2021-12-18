@@ -11,12 +11,12 @@ import moment from "moment";
 
 export default function Transaction() {
   const [showModal, setShowModal] = useState(false);
-  const [editMode, setEditMode] = useState(false);
+  const [editMode, setEditMode] = useState();
   const [transaction, setTransaction] = useState({});
   const [transactions, setTransactions] = useState([]);
 
   const handleAdd = () => {
-    setEditMode(true);
+    setEditMode("Add");
     setShowModal(true);
   };
 
@@ -91,7 +91,7 @@ const TransactionInfo = ({
 }) => {
   const handleClick = () => {
     setTransaction(data);
-    setEditMode(false);
+    setEditMode();
     setShowModal(true);
   };
 
@@ -102,11 +102,7 @@ const TransactionInfo = ({
         {moment(data.createdAt).format("MMM DD YYYY")}
       </div>
       <div className={styles.desc}>{data.note}</div>
-      <div
-        className={`${styles.money} ${
-          data.gain ? `${styles.green}` : `${styles.red}`
-        } `}
-      >
+      <div className={`${styles.money} ${data.gain ? "green" : "red"} `}>
         {data.amount}
       </div>
     </div>

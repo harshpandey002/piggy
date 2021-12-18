@@ -1,14 +1,16 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import styles from "@/styles/EditTransaction.module.css";
 import { parseCookies } from "nookies";
 import { motion } from "framer-motion";
-import { dropStyles2, getTheme, categoryOp } from "@/util/common";
+import { dropStyles2, getTheme, expenseOp, incomeOp } from "@/util/common";
 import Select from "react-select";
 import baseUrl from "@/helpers/baseUrl";
 
 export default function EditTransaction({
+  editMode,
   setEditMode,
   handleClose,
+  transaction,
   getTransactions,
 }) {
   const [gain, setGain] = useState("loose");
@@ -18,9 +20,32 @@ export default function EditTransaction({
   const [note, setNote] = useState("");
   const { token } = parseCookies();
 
-  const handleSubmit = async (e) => {
+  useEffect(() => {
+    const populate = () => {
+      setGain(transaction.gain ? "gain" : "loose");
+      setNecessary(transaction.necessary);
+      setAmount(transaction.amount);
+      setNote(transaction.note);
+      setCategory({ label: transaction.category, value: transaction.category });
+    };
+
+    if (editMode == "Edit") populate();
+  }, []);
+
+  const handleDecide = (e) => {
     e.preventDefault();
 
+    if (editMode == "Add") {
+      createTransaction(e);
+      return;
+    }
+
+    if (editMode == "Edit") {
+      updateTrasaction(e);
+    }
+  };
+
+  const getBodyObj = () => {
     const bodyObj = {
       gain: gain == "gain" ? true : false,
       category: category.value,
@@ -28,6 +53,31 @@ export default function EditTransaction({
       amount: Number(amount),
       note,
     };
+
+    return bodyObj;
+  };
+
+  const updateTrasaction = async (e) => {
+    // const bodyObj = getBodyObj()
+    // const res = await fetch(baseUrl + "transaction", {
+    //   method: "PATCH",
+    //   headers: {
+    //     "Content-Type": "application/json",
+    //     Authorization: token,
+    //   },
+    //   body: JSON.stringify(bodyObj),
+    // });
+    // const data = await res.json();
+    // if (res.ok) {
+    //   getTransactions();
+    //   handleClose(e);
+    // } else {
+    //   console.log(data.error);
+    // }
+  };
+
+  const createTransaction = async (e) => {
+    const bodyObj = getBodyObj();
 
     const res = await fetch(baseUrl + "transaction", {
       method: "POST",
@@ -46,8 +96,6 @@ export default function EditTransaction({
     } else {
       console.log(data.error);
     }
-
-    // setEditMode(false);
   };
 
   const setValue = (fn) => (e) => {
@@ -87,7 +135,7 @@ export default function EditTransaction({
       <motion.form
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        onSubmit={handleSubmit}
+        onSubmit={handleDecide}
         className={styles.form}
       >
         <motion.div layoutId="e" className={styles.inputGroup}>
@@ -96,7 +144,7 @@ export default function EditTransaction({
           </label> */}
           <Select
             styles={dropStyles2}
-            options={categoryOp}
+            options={gain == "gain" ? incomeOp : expenseOp}
             theme={getTheme}
             value={category}
             isClearable

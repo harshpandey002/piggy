@@ -48,14 +48,6 @@
   width: 20%;
 }
 
-.red {
-  color: var(--red);
-}
-
-.green {
-  color: var(--green);
-}
-
 @media only screen and (max-width: 1350px) {
   .header h3 {
     font-size: 1rem;

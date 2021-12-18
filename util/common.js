@@ -81,12 +81,26 @@ export const getTheme = (theme) => ({
   },
 });
 
-export const categoryOp = [
-  { value: "Transport", label: "Transport" },
+export const expenseOp = [
   { value: "Food and Drinks", label: "Food and Drinks" },
-  { value: "Groceries", label: "Groceries" },
+  { value: "Education", label: "Education" },
   { value: "Gym Essentials", label: "Gym Essentials" },
+  { value: "Groceries", label: "Groceries" },
+  { value: "Transport", label: "Transport" },
+  { value: "Personal", label: "Personal" },
+  { value: "Bills & Fees", label: "Bills & Fees" },
+  { value: "Entertainment", label: "Entertainment" },
+  { value: "Shopping", label: "Shopping" },
+  { value: "Healthcare", label: "Healthcare" },
+  { value: "Car", label: "Car" },
+  { value: "Home", label: "Home" },
+];
+
+export const incomeOp = [
+  { value: "Salary", label: "Salary" },
+  { value: "Extra Income", label: "Extra Income" },
   { value: "Trading", label: "Trading" },
-  { value: "Income", label: "Income" },
-  { value: "Side Income", label: "Side Income" },
+  { value: "Loan", label: "Loan" },
+  { value: "Gift", label: "Gift" },
+  { value: "Other", label: "Other" },
 ];

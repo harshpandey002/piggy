@@ -98,11 +98,7 @@ const Transactions = ({ data }) => {
       {/* <div className={styles.category}>{data.category}</div> */}
       <div className={styles.date}>{data.date}</div>
       <div className={styles.desc}>{data.desc}</div>
-      <div
-        className={`${styles.money} ${
-          data.gain ? `${styles.green}` : `${styles.red}`
-        } `}
-      >
+      <div className={`${styles.money} ${data.gain ? "green" : "red"} `}>
         {data.money}
       </div>
     </div>

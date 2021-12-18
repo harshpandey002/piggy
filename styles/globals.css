@@ -133,3 +133,11 @@ a {
 .rdrEndEdge {
   background-color: var(--black-3) !important;
 }
+
+.green {
+  color: var(--green);
+}
+
+.red {
+  color: var(--red);
+}

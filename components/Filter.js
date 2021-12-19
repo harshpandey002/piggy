@@ -1,13 +1,21 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import styles from "@/styles/Filter.module.css";
 import Select from "react-select";
 import ReactSlider from "react-slider";
-import { dropStyles1, getTheme, categoryOp } from "@/util/common";
+import {
+  dropStyles1,
+  getTheme,
+  groupedOp,
+  formatGroupLabel,
+  getRange,
+} from "@/util/common";
 import { DateRange } from "react-date-range";
+import baseUrl from "@/helpers/baseUrl";
 
-export default function Filter() {
-  const [keyword, setKeyword] = useState("");
-  const [category, setCategory] = useState([]);
+export default function Filter({ setFilter, filter }) {
+  const [note, setNote] = useState("");
+  const [category, setCategory] = useState();
+  const [range, setRange] = useState([]);
   const [date, setDate] = useState([
     {
       startDate: new Date(),
@@ -15,13 +23,28 @@ export default function Filter() {
       key: "selection",
     },
   ]);
+
+  useEffect(async () => {
+    const data = await getRange();
+    setRange(data);
+  }, []);
+
+  useEffect(() => {
+    setFilter({
+      ...filter,
+      category: category?.value,
+      note,
+    });
+  }, [category, note]);
+
   return (
     <div className={` box ${styles.container}`}>
       <div className={styles.input}>
         <p>By category</p>
         <Select
           styles={dropStyles1}
-          options={categoryOp}
+          options={groupedOp}
+          formatGroupLabel={formatGroupLabel}
           theme={getTheme}
           value={category}
           isClearable
@@ -34,27 +57,32 @@ export default function Filter() {
         <p>By note</p>
         <input
           type="search"
-          value={keyword}
+          value={note}
           placeholder="Enter keyword"
-          onChange={(e) => setKeyword(e.target.value)}
+          onChange={(e) => setNote(e.target.value)}
         />
       </div>
-      <div className={styles.input}>
-        <p>By amount</p>
-        <ReactSlider
-          className={styles.sliderContainer}
-          thumbClassName={styles.sliderThumb}
-          onChange={(value, index) =>
-            console.log(`onChange: ${JSON.stringify({ value, index })}`)
-          }
-          trackClassName="sliderTrack"
-          defaultValue={[0, 100]}
-          ariaLabel={["Lower thumb", "Upper thumb"]}
-          ariaValuetext={(state) => `Thumb value ${state.valueNow}`}
-          pearling
-          minDistance={10}
-        />
-      </div>
+      {!!range.length && (
+        <div className={styles.input}>
+          <p>By amount</p>
+          <ReactSlider
+            className={styles.sliderContainer}
+            thumbClassName={styles.sliderThumb}
+            onChange={(value) => {
+              setFilter({ ...filter, min: value[0], max: value[1] });
+            }}
+            trackClassName="sliderTrack"
+            min={0}
+            max={range[1]}
+            defaultValue={[1, range[1]]}
+            ariaLabel={["Lower thumb", "Upper thumb"]}
+            ariaValuetext={(state) => `Thumb value ${state.valueNow}`}
+            pearling
+            minDistance={10}
+          />
+        </div>
+      )}
+
       {/* <DateRange
               editableDateInputs={true}
               onChange={(item) => setDate([item.selection])}

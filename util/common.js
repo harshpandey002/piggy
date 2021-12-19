@@ -1,10 +1,22 @@
 import { parseCookies } from "nookies";
 import baseUrl from "@/helpers/baseUrl";
 
-export const filterTransaction = async () => {
-  const { token } = parseCookies();
+const { token } = parseCookies();
 
+export const getRange = async () => {
   const res = await fetch(baseUrl + "transaction", {
+    headers: {
+      Authorization: token,
+    },
+  });
+
+  const data = await res.json();
+
+  return [0, data.max];
+};
+
+export const filterTransaction = async (filter) => {
+  const res = await fetch(baseUrl + "transaction/" + JSON.stringify(filter), {
     headers: {
       Authorization: token,
     },
@@ -103,6 +115,25 @@ export const getTheme = (theme) => ({
   },
 });
 
+const groupStyles = {
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "space-between",
+};
+
+const groupBadgeStyles = {
+  backgroundColor: "#EBECF0",
+  borderRadius: "2em",
+  color: "#172B4D",
+  display: "inline-block",
+  fontSize: 12,
+  fontWeight: "normal",
+  lineHeight: "1",
+  minWidth: 1,
+  padding: "0.16666666666667em 0.5em",
+  textAlign: "center",
+};
+
 export const expenseOp = [
   { value: "Food and Drinks", label: "Food and Drinks" },
   { value: "Education", label: "Education" },
@@ -126,3 +157,23 @@ export const incomeOp = [
   { value: "Gift", label: "Gift" },
   { value: "Other", label: "Other" },
 ];
+
+export const groupedOp = [
+  {
+    label: "Expense",
+    options: expenseOp,
+  },
+  {
+    label: "Income",
+    options: incomeOp,
+  },
+];
+
+export const formatGroupLabel = (data) => {
+  return (
+    <div style={groupStyles}>
+      <span>{data.label}</span>
+      <span style={groupBadgeStyles}>{data.options.length}</span>
+    </div>
+  );
+};

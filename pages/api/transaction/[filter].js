@@ -1,30 +1,59 @@
 import initDB from "@/helpers/initDb";
-// import Transaction from "../../models/Transaction";
+import Transaction from "../../../models/Transaction";
 import Authenticate from "@/helpers/authenticate";
 import chalk from "chalk";
 
 initDB();
 
+const getQueryObject = (filter) => {
+  let queryObj = {};
+  const sort = filter.sort;
+
+  queryObj.userId = filter.id;
+
+  if (!!filter.max) {
+    queryObj.amount = { $lte: filter.max, $gte: filter.min };
+  }
+
+  if (!!filter.category) {
+    queryObj.category = filter.category;
+  }
+
+  if (!!filter.note) {
+    queryObj.note = { $regex: filter.note, $options: "i" };
+  }
+
+  console.log(queryObj);
+
+  return queryObj;
+};
+
 const getTransactions = Authenticate(async (req, res) => {
-  const query = req.query;
-  console.log(JSON.parse(query.filter));
+  let filter = req.query;
+  filter = JSON.parse(filter.filter);
+  filter.id = req.userId;
+  const query = getQueryObject(filter);
 
-  res.status(200).json({ message: "Request Successfull" });
+  // res
+  //   .status(200)
+  //   .json({ transactions: [{ category: "Transaction Sucessfull" }] });
 
-  //   try {
-  //     const transactions = await Transaction.find({ userId: req.userId }).sort({
-  //       createdAt: 1,
-  //     });
-  //     res.status(200).json({ transactions });
-  //   } catch (e) {
-  //     res.status(400).json({ error: e });
-  //   }
+  try {
+    const transactions = await Transaction.find({
+      ...query,
+    }).sort({
+      createdAt: -1,
+    });
+
+    res.status(200).json({ transactions });
+  } catch (e) {
+    res.status(400).json({ error: e });
+  }
 });
 
 const transaction = (req, res) => {
   switch (req.method) {
     case "GET": {
-      console.log("api ");
       getTransactions(req, res);
       break;
     }

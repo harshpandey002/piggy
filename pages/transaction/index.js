@@ -13,6 +13,14 @@ export default function Transaction() {
   const [editMode, setEditMode] = useState();
   const [transaction, setTransaction] = useState({});
   const [transactions, setTransactions] = useState([]);
+  const [filter, setFilter] = useState({
+    category: "",
+    note: "",
+    min: "",
+    max: "",
+    sort: 1,
+    limit: "",
+  });
 
   const handleAdd = () => {
     setEditMode("Add");
@@ -21,10 +29,10 @@ export default function Transaction() {
 
   useEffect(() => {
     getTransactions();
-  }, []);
+  }, [filter]);
 
   const getTransactions = async () => {
-    const data = await filterTransaction();
+    const data = await filterTransaction(filter);
     setTransactions(data);
   };
 
@@ -51,7 +59,7 @@ export default function Transaction() {
               />
             ))}
           </div>
-          <Filter />
+          <Filter filter={filter} setFilter={setFilter} />
         </div>
       </div>
       <ModalTransaction

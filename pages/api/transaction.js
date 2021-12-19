@@ -5,12 +5,18 @@ import chalk from "chalk";
 
 initDB();
 
-const getTransactions = Authenticate(async (req, res) => {
+const getRange = Authenticate(async (req, res) => {
   try {
-    const transactions = await Transaction.find({ userId: req.userId }).sort({
-      createdAt: 1,
-    });
-    res.status(200).json({ transactions });
+    const range = await Transaction.find({ userId: req.userId }, { amount: 1 });
+
+    var max = Math.max.apply(
+      Math,
+      range.map(function (o) {
+        return o.amount;
+      })
+    );
+
+    res.status(200).json({ max });
   } catch (e) {
     res.status(400).json({ error: e });
   }
@@ -47,7 +53,7 @@ const updateTransaction = Authenticate(async (req, res) => {
 const transaction = (req, res) => {
   switch (req.method) {
     case "GET": {
-      getTransactions(req, res);
+      getRange(req, res);
       break;
     }
     case "POST": {

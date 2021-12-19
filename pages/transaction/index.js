@@ -32,6 +32,7 @@ export default function Transaction() {
   }, [filter]);
 
   const getTransactions = async () => {
+    //TODO! Debounce
     const data = await filterTransaction(filter);
     setTransactions(data);
   };

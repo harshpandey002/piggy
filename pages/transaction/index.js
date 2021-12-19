@@ -1,13 +1,12 @@
 import { useState, useEffect } from "react";
 import Layout from "@/components/Layout";
 import styles from "@/styles/Transaction.module.css";
-// import { transactions } from "@/util/content";
-
 import ModalTransaction from "@/components/ModalTransaction";
 import Filter from "@/components/Filter";
 import { parseCookies } from "nookies";
 import baseUrl from "@/helpers/baseUrl";
 import moment from "moment";
+import { filterTransaction } from "@/util/common";
 
 export default function Transaction() {
   const [showModal, setShowModal] = useState(false);
@@ -25,23 +24,8 @@ export default function Transaction() {
   }, []);
 
   const getTransactions = async () => {
-    const { token } = parseCookies();
-
-    const res = await fetch(baseUrl + "transaction", {
-      headers: {
-        Authorization: token,
-      },
-    });
-    const data = await res.json();
-
-    console.log("%c Get all transactions", "color: yellow");
-    if (res.ok) {
-      console.log("%c" + data.transactions, "color: green");
-      setTransactions(data.transactions);
-    } else {
-      console.log("%c Error", "color: red");
-      console.log(data.error);
-    }
+    const data = await filterTransaction();
+    setTransactions(data);
   };
 
   return (

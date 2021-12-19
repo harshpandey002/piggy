@@ -1,3 +1,25 @@
+import { parseCookies } from "nookies";
+import baseUrl from "@/helpers/baseUrl";
+
+export const filterTransaction = async () => {
+  const { token } = parseCookies();
+
+  const res = await fetch(baseUrl + "transaction", {
+    headers: {
+      Authorization: token,
+    },
+  });
+  const data = await res.json();
+
+  // console.log("%c Get all transactions", "color: yellow");
+  if (res.ok) {
+    // console.log("%c" + data.transactions, "color: green");
+    return data.transactions;
+  } else {
+    console.log("%c" + data.error, "color: orange");
+  }
+};
+
 export const dropStyles1 = {
   option: (provided, state) => ({
     ...provided,

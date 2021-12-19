@@ -7,7 +7,9 @@ initDB();
 
 const getTransactions = Authenticate(async (req, res) => {
   try {
-    const transactions = await Transaction.find({ userId: req.userId });
+    const transactions = await Transaction.find({ userId: req.userId }).sort({
+      createdAt: 1,
+    });
     res.status(200).json({ transactions });
   } catch (e) {
     res.status(400).json({ error: e });
@@ -22,7 +24,6 @@ const createTransaction = Authenticate(async (req, res) => {
       ...body,
     }).save();
 
-    console.log(chalk.inverse(newTransaction));
     res.status(200).json({ transaction: newTransaction });
   } catch (e) {
     res.status(400).json({ error: e });

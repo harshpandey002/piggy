@@ -7,7 +7,7 @@ initDB();
 
 const getQueryObject = (filter) => {
   let queryObj = {};
-  const sort = filter.sort;
+  let sort = {};
 
   queryObj.userId = filter.id;
 
@@ -23,14 +23,20 @@ const getQueryObject = (filter) => {
     queryObj.note = { $regex: filter.note, $options: "i" };
   }
 
-  return queryObj;
+  if (!!filter.amount) {
+    sort.amount = filter.amount;
+  } else {
+    sort.createdAt = filter.createdAt;
+  }
+
+  return { find: queryObj, sort };
 };
 
 const getTransactions = Authenticate(async (req, res) => {
   let filter = req.query;
   filter = JSON.parse(filter.filter);
   filter.id = req.userId;
-  const query = getQueryObject(filter);
+  const { find, sort } = getQueryObject(filter);
 
   // res
   //   .status(200)
@@ -38,9 +44,9 @@ const getTransactions = Authenticate(async (req, res) => {
 
   try {
     const transactions = await Transaction.find({
-      ...query,
+      ...find,
     }).sort({
-      createdAt: -1,
+      ...sort,
     });
 
     res.status(200).json({ transactions });

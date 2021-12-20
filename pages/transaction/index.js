@@ -18,8 +18,8 @@ export default function Transaction() {
     note: "",
     min: "",
     max: "",
-    sort: 1,
     limit: "",
+    createdAt: -1,
   });
 
   const handleAdd = () => {
@@ -50,7 +50,7 @@ export default function Transaction() {
         </div>
         <div className={styles.content}>
           <div className={` box ${styles.left}`}>
-            <TransactionHeader />
+            <TransactionHeader filter={filter} setFilter={setFilter} />
             {transactions.map((data) => (
               <TransactionInfo
                 key={data.id}
@@ -103,15 +103,30 @@ const TransactionInfo = ({
   );
 };
 
-const TransactionHeader = () => {
+const TransactionHeader = ({ setFilter, filter }) => {
+  const handleDate = () => {
+    setFilter({
+      ...filter,
+      createdAt: -1 * filter.createdAt,
+      amount: "",
+    });
+  };
+
+  const handleAmount = () => {
+    setFilter({
+      ...filter,
+      amount: filter.amount ? -1 * filter.amount : -1,
+    });
+  };
+
   return (
     <div className={styles.transactionHeader}>
       <div className={styles.category}>Category</div>
-      <div className={styles.date}>
+      <div onClick={handleDate} className={styles.date}>
         Date <BiSort />
       </div>
       <div className={styles.desc}>Note</div>
-      <div className={styles.money}>
+      <div onClick={handleAmount} className={styles.money}>
         Amount <BiSort />
       </div>
     </div>

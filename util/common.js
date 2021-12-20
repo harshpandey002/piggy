@@ -28,7 +28,7 @@ export const filterTransaction = async (filter) => {
     // console.log("%c" + data.transactions, "color: green");
     return data.transactions;
   } else {
-    console.log("%c" + data.error, "color: orange");
+    console.log(data);
   }
 };
 

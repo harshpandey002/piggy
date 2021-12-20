@@ -41,7 +41,8 @@
   border-radius: 5px;
 }
 
-.transaction {
+.transaction,
+.transactionHeader {
   width: 100%;
   display: flex;
   border-radius: 5px;
@@ -51,6 +52,12 @@
 
 .transaction:hover {
   background-color: var(--white-3);
+}
+
+.transactionHeader {
+  background-color: #fafafa;
+  cursor: initial;
+  font-weight: 600;
 }
 
 .category {
@@ -68,18 +75,34 @@
   text-overflow: ellipsis;
   white-space: nowrap;
 }
+
+.transactionHeader .date {
+  width: 20%;
+  min-width: 70px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
 .desc {
   width: 45%;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
+
 .money {
   width: 10%;
   min-width: 60px;
   margin-left: auto;
   text-align: end;
   font-weight: 600;
+}
+
+.transactionHeader .money {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
 }
 
 @media only screen and (max-width: 1020px) {
@@ -113,5 +136,12 @@
   }
   .left {
     order: 2;
+  }
+
+  .transactionHeader .desc {
+    width: 35%;
+  }
+  .transactionHeader .money {
+    width: 20%;
   }
 }

@@ -23,8 +23,6 @@ const getQueryObject = (filter) => {
     queryObj.note = { $regex: filter.note, $options: "i" };
   }
 
-  console.log(queryObj);
-
   return queryObj;
 };
 

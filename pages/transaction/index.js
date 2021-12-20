@@ -4,9 +4,9 @@ import styles from "@/styles/Transaction.module.css";
 import ModalTransaction from "@/components/ModalTransaction";
 import Filter from "@/components/Filter";
 import { parseCookies } from "nookies";
-import baseUrl from "@/helpers/baseUrl";
 import moment from "moment";
 import { filterTransaction } from "@/util/common";
+import { BiSort } from "react-icons/bi";
 
 export default function Transaction() {
   const [showModal, setShowModal] = useState(false);
@@ -50,6 +50,7 @@ export default function Transaction() {
         </div>
         <div className={styles.content}>
           <div className={` box ${styles.left}`}>
+            <TransactionHeader />
             {transactions.map((data) => (
               <TransactionInfo
                 key={data.id}
@@ -97,6 +98,21 @@ const TransactionInfo = ({
       <div className={styles.desc}>{data.note}</div>
       <div className={`${styles.money} ${data.gain ? "green" : "red"} `}>
         {data.amount}
+      </div>
+    </div>
+  );
+};
+
+const TransactionHeader = () => {
+  return (
+    <div className={styles.transactionHeader}>
+      <div className={styles.category}>Category</div>
+      <div className={styles.date}>
+        Date <BiSort />
+      </div>
+      <div className={styles.desc}>Note</div>
+      <div className={styles.money}>
+        Amount <BiSort />
       </div>
     </div>
   );

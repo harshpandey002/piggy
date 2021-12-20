@@ -47,11 +47,13 @@ export default function EditTransaction({
   };
 
   const getBodyObj = () => {
+    let number = Number(amount);
+    number = gain == "gain" ? number : -1 * number;
     const bodyObj = {
       gain: gain == "gain" ? true : false,
       category: category.value,
       necessary,
-      amount: Number(amount),
+      amount: number,
       note,
     };
 

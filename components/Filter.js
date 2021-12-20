@@ -72,9 +72,9 @@ export default function Filter({ setFilter, filter }) {
               setFilter({ ...filter, min: value[0], max: value[1] });
             }}
             trackClassName="sliderTrack"
-            min={0}
+            min={range[0]}
             max={range[1]}
-            defaultValue={[1, range[1]]}
+            defaultValue={[range[0], range[1]]}
             ariaLabel={["Lower thumb", "Upper thumb"]}
             ariaValuetext={(state) => `Thumb value ${state.valueNow}`}
             pearling

@@ -12,7 +12,7 @@ export const getRange = async () => {
 
   const data = await res.json();
 
-  return [0, data.max];
+  return [data.min - 100, data.max + 100];
 };
 
 export const filterTransaction = async (filter) => {

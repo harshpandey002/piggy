@@ -97,7 +97,8 @@ const TransactionInfo = ({
       </div>
       <div className={styles.desc}>{data.note}</div>
       <div className={`${styles.money} ${data.gain ? "green" : "red"} `}>
-        {data.amount}
+        {data.amount > 0 ? "+" + data.amount : data.amount}
+        {/* {data.amount < 0 ? -1 * data.amount : data.amount} */}
       </div>
     </div>
   );

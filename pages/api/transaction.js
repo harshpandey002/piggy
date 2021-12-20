@@ -16,7 +16,14 @@ const getRange = Authenticate(async (req, res) => {
       })
     );
 
-    res.status(200).json({ max });
+    var min = Math.min.apply(
+      Math,
+      range.map(function (o) {
+        return o.amount;
+      })
+    );
+
+    res.status(200).json({ max, min });
   } catch (e) {
     res.status(400).json({ error: e });
   }

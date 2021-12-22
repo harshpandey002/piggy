@@ -15,7 +15,7 @@ export const getRange = async () => {
   return [data.min - 100, data.max + 100];
 };
 
-export const filterTransaction = async (filter) => {
+const filterTransaction = async (filter, set) => {
   const res = await fetch(baseUrl + "transaction/" + JSON.stringify(filter), {
     headers: {
       Authorization: token,
@@ -26,10 +26,21 @@ export const filterTransaction = async (filter) => {
   // console.log("%c Get all transactions", "color: yellow");
   if (res.ok) {
     // console.log("%c" + data.transactions, "color: green");
-    return data.transactions;
+    set(data.transactions);
   } else {
-    console.log(data);
+    alert(data);
   }
+};
+
+export const getDebounce = function () {
+  let timer;
+  return function (filter, set) {
+    clearTimeout(timer);
+
+    timer = setTimeout(() => {
+      filterTransaction(filter, set);
+    }, 300);
+  };
 };
 
 export const dropStyles1 = {

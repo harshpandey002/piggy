@@ -68,7 +68,6 @@ const transaction = (req, res) => {
       break;
     }
     case "PATCH": {
-      console.log("Hello");
       updateTransaction(req, res);
       break;
     }

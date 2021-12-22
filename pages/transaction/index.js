@@ -5,8 +5,10 @@ import ModalTransaction from "@/components/ModalTransaction";
 import Filter from "@/components/Filter";
 import { parseCookies } from "nookies";
 import moment from "moment";
-import { filterTransaction } from "@/util/common";
+import { getDebounce } from "@/util/common";
 import { BiSort } from "react-icons/bi";
+
+const debounceTransaction = getDebounce();
 
 export default function Transaction() {
   const [showModal, setShowModal] = useState(false);
@@ -31,10 +33,8 @@ export default function Transaction() {
     getTransactions();
   }, [filter]);
 
-  const getTransactions = async () => {
-    //TODO! Debounce
-    const data = await filterTransaction(filter);
-    setTransactions(data);
+  const getTransactions = () => {
+    debounceTransaction(filter, setTransactions);
   };
 
   return (

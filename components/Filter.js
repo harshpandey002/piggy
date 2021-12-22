@@ -24,10 +24,14 @@ export default function Filter({ setFilter, filter }) {
     },
   ]);
 
-  useEffect(async () => {
+  useEffect(() => {
+    fetchRange();
+  }, []);
+
+  const fetchRange = async () => {
     const data = await getRange();
     setRange(data);
-  }, []);
+  };
 
   useEffect(() => {
     setFilter({

@@ -48,7 +48,7 @@ export default function ModalBudget({ show, onClose }) {
     const data = await res.json();
 
     if (res.ok) {
-      // handleClose();
+      handleClose(e);
     } else {
       alert(data.error);
     }

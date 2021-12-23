@@ -1,5 +1,5 @@
 import initDB from "@/helpers/initDb";
-import Transaction from "../../models/Transaction";
+import Transaction from "@/models/Transaction";
 import Authenticate from "@/helpers/authenticate";
 import chalk from "chalk";
 

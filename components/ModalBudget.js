@@ -8,7 +8,7 @@ import { DateRange } from "react-date-range";
 import baseUrl from "@/helpers/baseUrl";
 import { parseCookies } from "nookies";
 
-export default function ModalBudget({ show, onClose }) {
+export default function ModalBudget({ show, onClose, fetchBudget }) {
   const [isBrowser, setIsBrowser] = useState(false);
   const [category, setCategory] = useState([]);
   const [limit, setLimit] = useState();
@@ -48,6 +48,7 @@ export default function ModalBudget({ show, onClose }) {
     const data = await res.json();
 
     if (res.ok) {
+      fetchBudget();
       handleClose(e);
     } else {
       alert(data.error);

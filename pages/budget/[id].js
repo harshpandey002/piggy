@@ -66,6 +66,8 @@ export default function BudgetDetail() {
     (data) => data.category == "Food and Drinks"
   );
 
+  // TODO Make this component mobile friendly
+
   return (
     <Layout>
       <div className={styles.container}>

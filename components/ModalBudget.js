@@ -3,13 +3,16 @@ import ReactDOM from "react-dom";
 import styles from "@/styles/ModalBudget.module.css";
 import { motion, AnimateSharedLayout } from "framer-motion";
 import Select from "react-select";
-import { dropStyles2, getTheme, categoryOp } from "@/util/common";
+import { dropStyles2, getTheme, expenseOp } from "@/util/common";
 import { DateRange } from "react-date-range";
+import baseUrl from "@/helpers/baseUrl";
+import { parseCookies } from "nookies";
 
 export default function ModalBudget({ show, onClose }) {
   const [isBrowser, setIsBrowser] = useState(false);
   const [category, setCategory] = useState([]);
-  const [state, setState] = useState([
+  const [limit, setLimit] = useState();
+  const [range, setRange] = useState([
     {
       startDate: new Date(),
       endDate: new Date(),
@@ -21,8 +24,34 @@ export default function ModalBudget({ show, onClose }) {
     setIsBrowser(true);
   }, []);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+
+    const { token } = parseCookies();
+
+    const bodyObj = {
+      category: category.value,
+      startDate: range[0].startDate,
+      endDate: range[0].endDate,
+      limit: Number(limit),
+    };
+
+    const res = await fetch(baseUrl + "budget", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: token,
+      },
+      body: JSON.stringify(bodyObj),
+    });
+
+    const data = await res.json();
+
+    if (res.ok) {
+      // handleClose();
+    } else {
+      alert(data.error);
+    }
   };
 
   const handleClose = (e) => {
@@ -42,10 +71,10 @@ export default function ModalBudget({ show, onClose }) {
           </label> */}
             <Select
               styles={dropStyles2}
-              options={categoryOp}
+              options={expenseOp}
               theme={getTheme}
-              value={category}
               isClearable
+              value={category}
               onChange={setCategory}
               isSearchable={false}
               placeholder="Choose Category"
@@ -60,9 +89,9 @@ export default function ModalBudget({ show, onClose }) {
               className={styles.wrapper}
               editableDateInputs={true}
               rangeColors={["#3d91ff", "#00000", "#fed14c"]}
-              onChange={(item) => setState([item.selection])}
+              onChange={(item) => setRange([item.selection])}
               moveRangeOnFirstSelection={false}
-              ranges={state}
+              ranges={range}
             />
           </div>
 
@@ -74,7 +103,13 @@ export default function ModalBudget({ show, onClose }) {
             <label className={styles.label} htmlFor="amount">
               How much you want to spend?
             </label>
-            <input id="amount" type="number" placeholder="Enter amount" />
+            <input
+              id="amount"
+              type="number"
+              placeholder="Enter amount"
+              value={limit}
+              onChange={(e) => setLimit(e.target.value)}
+            />
           </div>
           <div className={styles.cta}>
             <button className={styles.discard} onClick={handleClose}>

@@ -76,7 +76,7 @@ const PreviewTransaction = ({ setEditMode, handleClose, transaction }) => {
         </motion.div>
       </div>
       <motion.div layoutId="c" className={styles.description}>
-        <p>{transaction.note}</p>
+        <p>{transaction.note ? transaction.note : "--"}</p>
       </motion.div>
       <div className={styles.btn}>
         <button onClick={handleClose}>Close</button>

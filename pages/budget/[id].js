@@ -1,7 +1,9 @@
+import { useEffect } from "react";
 import BudgetDetailCard from "@/components/BudgetDetailCard";
 import Layout from "@/components/Layout";
+import baseUrl from "@/helpers/baseUrl";
 import styles from "@/styles/BudgetDetail.module.css";
-import { transactions } from "@/util/content";
+import { parseCookies } from "nookies";
 import {
   BarChart,
   Bar,
@@ -14,7 +16,7 @@ import {
   ResponsiveContainer,
 } from "recharts";
 
-const data = [
+const wait = [
   {
     name: "Oct 5",
     pv: 0,
@@ -61,26 +63,23 @@ const data = [
   },
 ];
 
-export default function BudgetDetail() {
-  const filterTransactions = transactions.filter(
-    (data) => data.category == "Food and Drinks"
-  );
-
+export default function BudgetDetail({ budget }) {
   // TODO Make this component mobile friendly
 
   return (
     <Layout>
       <div className={styles.container}>
-        <BudgetDetailCard />
+        <BudgetDetailCard data={budget.detail} />
         <div className={styles.content}>
           <div className={` box ${styles.left}`}>
-            {filterTransactions.map((data) => (
+            <TransactionHeader />
+            {budget.transactions.map((data) => (
               <Transactions key={data.id} data={data} />
             ))}
           </div>
           <div className={` box ${styles.right}`}>
             <ResponsiveContainer>
-              <BarChart width={500} height={300} data={data}>
+              <BarChart width={500} height={300} data={wait}>
                 <XAxis dataKey="name" />
                 <YAxis />
                 <Tooltip />
@@ -101,8 +100,37 @@ const Transactions = ({ data }) => {
       <div className={styles.date}>{data.date}</div>
       <div className={styles.desc}>{data.desc}</div>
       <div className={`${styles.money} ${data.gain ? "green" : "red"} `}>
-        {data.money}
+        {data.money > 0 ? "+" + data.money : data.money}
       </div>
     </div>
   );
 };
+
+const TransactionHeader = () => {
+  return (
+    <div className={styles.transactionHeader}>
+      <div className={styles.date}>Date</div>
+      <div className={styles.desc}>Note</div>
+      <div className={styles.money}>Amount</div>
+    </div>
+  );
+};
+
+export async function getServerSideProps(ctx) {
+  const id = ctx.params.id;
+  const { token } = parseCookies(ctx);
+
+  const res = await fetch(baseUrl + "budget/" + id, {
+    headers: {
+      Authorization: token,
+    },
+  });
+
+  const data = await res.json();
+
+  return {
+    props: {
+      budget: data,
+    },
+  };
+}

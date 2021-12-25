@@ -2,6 +2,7 @@ import styles from "@/styles/BudgetCard.module.css";
 import { numberWithCommas, handleColor } from "@/util/util";
 import router from "next/router";
 import moment from "moment";
+import { motion } from "framer-motion";
 
 export default function BudgetCard({ data }) {
   // TODO add hover styles to container
@@ -9,7 +10,7 @@ export default function BudgetCard({ data }) {
 
   return (
     <div
-      onClick={() => router.push("/budget/1234")}
+      onClick={() => router.push(`/budget/${data._id}`)}
       className={` box ${styles.container}`}
     >
       <div className={styles.category}>
@@ -32,9 +33,10 @@ export default function BudgetCard({ data }) {
       </div>
       <div className={styles.visual}>
         <div className={styles.outer}>
-          <div
+          <motion.div
+            initial={{ width: "0%" }}
+            animate={{ width: `${data.expend}%` }}
             style={{
-              width: `${data.expend}%`,
               backgroundColor: handleColor(data.expend),
             }}
             className={styles.inner}

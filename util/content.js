@@ -67,7 +67,7 @@ export const transactions = [
     category: "Income",
     date: "Nov 02, 2021",
     desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit, suscipit distinctio? Libero consequuntur rem inventore alias animi similique qui quae!",
-    money: "25000",
+    money: 25000,
     gain: true,
   },
   {
@@ -75,7 +75,7 @@ export const transactions = [
     category: "Transport",
     date: "Oct 31, 2021",
     desc: "Lorem ipsum dolor sit amet Libero consequuntur rem inventore alias animi similique qui quae!",
-    money: "854",
+    money: -854,
     gain: false,
   },
   {
@@ -83,7 +83,7 @@ export const transactions = [
     category: "Food and Drinks",
     date: "Oct 27, 2021",
     desc: "rem inventore alias animi similique qui quae!",
-    money: "600",
+    money: -600,
     gain: false,
   },
   {
@@ -91,7 +91,7 @@ export const transactions = [
     category: "Food and Drinks",
     date: "Oct 22, 2021",
     desc: "rem inventore alias animi similique nventore alias animi similique qui quae!",
-    money: "230",
+    money: -230,
     gain: false,
   },
   {
@@ -99,7 +99,7 @@ export const transactions = [
     category: "Transport",
     date: "Oct 18, 2021",
     desc: "rem inventor einventor einventore alias animi similique nventore alias animi similique qui quae!",
-    money: "330",
+    money: -330,
     gain: false,
   },
   {
@@ -107,7 +107,7 @@ export const transactions = [
     category: "Food and Drinks",
     date: "Oct 14, 2021",
     desc: "rem nventore alias animi similique qui quae!",
-    money: "2000",
+    money: -2000,
     gain: false,
   },
   {
@@ -115,7 +115,7 @@ export const transactions = [
     category: "Transport",
     date: "Oct 10, 2021",
     desc: "rem em nventore alias an similique qui quae!",
-    money: "545",
+    money: -545,
     gain: false,
   },
   {
@@ -123,7 +123,7 @@ export const transactions = [
     category: "Trading",
     date: "Oct 08, 2021",
     desc: "--",
-    money: "2800",
+    money: 2800,
     gain: true,
   },
   {
@@ -131,7 +131,7 @@ export const transactions = [
     category: "Food and Drinks",
     date: "Oct 07, 2021",
     desc: "m nventore alias animi similique quim nventore alias animi similique qui",
-    money: "234",
+    money: -234,
     gain: false,
   },
   {
@@ -139,7 +139,7 @@ export const transactions = [
     category: "Side Income",
     date: "Oct 05, 2021",
     desc: "m nventore similique qui",
-    money: "234",
+    money: -234,
     gain: false,
   },
   {
@@ -147,7 +147,7 @@ export const transactions = [
     category: "Groceries",
     date: "Oct 03, 2021",
     desc: "--",
-    money: "7532",
+    money: -7532,
     gain: false,
   },
   {
@@ -155,7 +155,7 @@ export const transactions = [
     category: "Income",
     date: "Oct 02, 2021",
     desc: "m nventore alias animi similique quim nventore alias animi similique qui",
-    money: "23000",
+    money: 23000,
     gain: true,
   },
 ];

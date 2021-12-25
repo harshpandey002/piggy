@@ -25,6 +25,8 @@ export default function ModalBudget({ show, onClose, fetchBudget }) {
     setIsBrowser(true);
   }, []);
 
+  // TODO validate for overlapping budget and category
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 

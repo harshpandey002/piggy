@@ -1,5 +1,5 @@
 import styles from "@/styles/BudgetCard.module.css";
-import { numberWithCommas } from "@/util/util";
+import { numberWithCommas, handleColor } from "@/util/util";
 import router from "next/router";
 import moment from "moment";
 
@@ -17,6 +17,7 @@ export default function BudgetCard({ data }) {
       </div>
       <div className={styles.content}>
         <h2
+          style={{ color: handleColor(data.expend) }}
           className="tooltip"
           data-tooltip={`₹${numberWithCommas(data.balance)}`}
         >
@@ -31,7 +32,13 @@ export default function BudgetCard({ data }) {
       </div>
       <div className={styles.visual}>
         <div className={styles.outer}>
-          <div className={styles.inner} />
+          <div
+            style={{
+              width: `${data.expend}%`,
+              backgroundColor: handleColor(data.expend),
+            }}
+            className={styles.inner}
+          />
         </div>
         <div className={styles.dates}>
           <p>{moment(data.startDate).format("MMM DD YYYY")}</p>

@@ -12,7 +12,6 @@
   width: max-content;
   margin-top: 10px;
   font-weight: 500;
-  color: var(--green);
   line-height: 0.8;
 }
 
@@ -36,8 +35,6 @@
 }
 
 .inner {
-  background-color: var(--green);
-  width: 25%;
   height: 100%;
 }
 

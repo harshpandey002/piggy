@@ -18,9 +18,18 @@ export const calcBudget = async (budgets) => {
       let balance = transactions.reduce(
         (prev, curr) => prev.amount + curr.amount
       );
+
+      let expend;
       balance = budget.limit - -1 * balance;
+
+      if (balance < 0) {
+        expend = 100;
+      } else {
+        expend = Math.floor(100 - (balance / budget.limit) * 100);
+      }
+
       budget.balance = balance;
-      console.log(budget);
+      budget.expend = expend;
 
       return budget;
     })

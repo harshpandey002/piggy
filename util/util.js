@@ -10,3 +10,21 @@ export const numberWithCommas = (x) => {
   var res = otherNumbers.replace(/\B(?=(\d{2})+(?!\d))/g, ",") + lastThree;
   return res;
 };
+
+export const handleColor = (expend) => {
+  let color;
+
+  if (expend < 25) {
+    color = "#59bb1c";
+  } else if (expend < 50) {
+    color = "#d6c400";
+  } else if (expend < 75) {
+    color = "#d65d00";
+  } else if (expend < 100) {
+    color = "#fa634e";
+  } else if (expend == 100) {
+    color = "#2f2f2f";
+  }
+
+  return color;
+};

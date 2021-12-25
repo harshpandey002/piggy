@@ -1,13 +1,18 @@
 import Budget from "@/models/Budget";
 import initDB from "@/helpers/initDb";
 import Authenticate from "@/helpers/authenticate";
+import { calcBudget } from "@/helpers/calc";
 
 initDB();
 
 const getBudget = Authenticate(async (req, res) => {
   try {
-    const budgets = await Budget.find({ userId: req.userId });
-    res.status(200).json({ budgets });
+    let budgets = await Budget.find({ userId: req.userId });
+    budgets = JSON.parse(JSON.stringify(budgets));
+
+    const updatedBudgets = await calcBudget(budgets);
+
+    res.status(200).json(updatedBudgets);
   } catch (error) {
     res.status(400).json({ error });
   }

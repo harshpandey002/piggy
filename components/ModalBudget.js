@@ -7,6 +7,7 @@ import { dropStyles2, getTheme, expenseOp } from "@/util/common";
 import { DateRange } from "react-date-range";
 import baseUrl from "@/helpers/baseUrl";
 import { parseCookies } from "nookies";
+import moment from "moment";
 
 export default function ModalBudget({ show, onClose, fetchBudget }) {
   const [isBrowser, setIsBrowser] = useState(false);
@@ -32,7 +33,7 @@ export default function ModalBudget({ show, onClose, fetchBudget }) {
     const bodyObj = {
       category: category.value,
       startDate: range[0].startDate,
-      endDate: range[0].endDate,
+      endDate: moment(range[0].endDate).endOf("day"),
       limit: Number(limit),
     };
 

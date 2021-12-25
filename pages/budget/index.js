@@ -25,8 +25,8 @@ export default function Budget() {
     const data = await res.json();
 
     if (res.ok) {
-      console.log(data.budgets);
-      setBudgets(data.budgets);
+      console.log(data);
+      setBudgets(data);
     } else {
       console.log(data.error);
     }

@@ -5,6 +5,8 @@ import moment from "moment";
 
 export default function BudgetCard({ data }) {
   // TODO add hover styles to container
+  console.log(data);
+
   return (
     <div
       onClick={() => router.push("/budget/1234")}
@@ -14,10 +16,16 @@ export default function BudgetCard({ data }) {
         <p>{data.category}</p>
       </div>
       <div className={styles.content}>
-        <h2 className="tooltip" data-tooltip={`₹${numberWithCommas(7000)}`}>
-          {numberWithCommas(7000)} <span>left</span>
+        <h2
+          className="tooltip"
+          data-tooltip={`₹${numberWithCommas(data.balance)}`}
+        >
+          {numberWithCommas(data.balance)} <span>left</span>
         </h2>
-        <p className="tooltip" data-tooltip={`₹${numberWithCommas(10000)}`}>
+        <p
+          className="tooltip"
+          data-tooltip={`₹${numberWithCommas(data.limit)}`}
+        >
           from {numberWithCommas(data.limit)}
         </p>
       </div>

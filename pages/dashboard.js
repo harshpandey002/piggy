@@ -14,7 +14,7 @@ export default function Dashboard() {
         <div className={styles.left}>
           <WalletOverview />
           <Graph />
-          <BudgetOverview />
+          {/* <BudgetOverview /> */}
         </div>
         <div className={styles.right}>
           <Future />

@@ -15,6 +15,7 @@ import {
   Legend,
   ResponsiveContainer,
 } from "recharts";
+import moment from "moment";
 
 const wait = [
   {
@@ -79,11 +80,11 @@ export default function BudgetDetail({ budget }) {
           </div>
           <div className={` box ${styles.right}`}>
             <ResponsiveContainer>
-              <BarChart width={500} height={300} data={wait}>
-                <XAxis dataKey="name" />
+              <BarChart width={500} height={300} data={budget.chart}>
+                <XAxis dataKey="createdAt" />
                 <YAxis />
                 <Tooltip />
-                <Bar dataKey="pv" fill="#fa634e" />
+                <Bar dataKey="amount" fill="#fa634e" />
               </BarChart>
             </ResponsiveContainer>
           </div>
@@ -97,10 +98,12 @@ const Transactions = ({ data }) => {
   return (
     <div className={styles.transaction}>
       {/* <div className={styles.category}>{data.category}</div> */}
-      <div className={styles.date}>{data.date}</div>
-      <div className={styles.desc}>{data.desc}</div>
+      <div className={styles.date}>
+        {moment(data.createdAt).format("MMM DD YYYY")}
+      </div>
+      <div className={styles.desc}>{data.note}</div>
       <div className={`${styles.money} ${data.gain ? "green" : "red"} `}>
-        {data.money > 0 ? "+" + data.money : data.money}
+        {data.amount > 0 ? "+" + data.amount : data.amount}
       </div>
     </div>
   );

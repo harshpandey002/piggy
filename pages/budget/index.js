@@ -37,7 +37,11 @@ export default function Budget() {
     <Layout>
       <div className={styles.container}>
         {budgets.map((budget) => (
-          <BudgetCard key={budget._id} data={budget} />
+          <BudgetCard
+            key={budget._id}
+            data={budget}
+            fetchBudget={fetchBudget}
+          />
         ))}
         <NewBudget fetchBudget={fetchBudget} />
       </div>

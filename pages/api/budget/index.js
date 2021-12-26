@@ -35,11 +35,6 @@ const createBudget = Authenticate(async (req, res) => {
   }
 });
 
-const deleteBudget = Authenticate(async (req, res) => {
-  console.log("DELETE Request");
-  res.status(200).json({ message: "Deleted" });
-});
-
 const budget = (req, res) => {
   switch (req.method) {
     case "GET":
@@ -47,9 +42,6 @@ const budget = (req, res) => {
       break;
     case "POST":
       createBudget(req, res);
-      break;
-    case "DELETE":
-      deleteBudget(req, res);
       break;
   }
 };

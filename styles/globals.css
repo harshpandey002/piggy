@@ -141,3 +141,7 @@ a {
 .red {
   color: var(--red);
 }
+
+.recharts-tooltip-cursor {
+  fill: var(--white-3);
+}

@@ -74,3 +74,14 @@
   display: flex;
   align-items: center;
 }
+
+@media only screen and (max-width: 600px) {
+  .content {
+    flex-direction: column;
+  }
+
+  .right,
+  .left {
+    width: 100%;
+  }
+}

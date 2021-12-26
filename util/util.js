@@ -21,7 +21,7 @@ export const handleColor = (expend) => {
   } else if (expend < 75) {
     color = "#d65d00";
   } else if (expend < 100) {
-    color = "#fa634e";
+    color = "#d41a00";
   } else if (expend == 100) {
     color = "#2f2f2f";
   }

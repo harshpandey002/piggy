@@ -6,7 +6,6 @@ import { motion } from "framer-motion";
 
 export default function BudgetCard({ data }) {
   // TODO add hover styles to container
-  console.log(data);
 
   return (
     <div

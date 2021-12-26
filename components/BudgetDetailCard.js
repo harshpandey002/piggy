@@ -4,6 +4,8 @@ import { motion } from "framer-motion";
 import moment from "moment";
 
 export default function BudgetDetailCard({ data }) {
+  console.log(data);
+
   return (
     <div className={` box ${styles.container}`}>
       <div className={styles.category}>

@@ -101,7 +101,7 @@ const Transactions = ({ data }) => {
       <div className={styles.date}>
         {moment(data.createdAt).format("MMM DD YYYY")}
       </div>
-      <div className={styles.desc}>{data.note}</div>
+      <div className={styles.desc}>{data.note ? data.note : "--"}</div>
       <div className={`${styles.money} ${data.gain ? "green" : "red"} `}>
         {data.amount > 0 ? "+" + data.amount : data.amount}
       </div>

@@ -1,4 +1,5 @@
 import Transaction from "@/models/Transaction";
+import moment from "moment";
 
 export const calcBudget = async (budgets) => {
   const updatedBudgets = await Promise.all(
@@ -15,9 +16,17 @@ export const calcBudget = async (budgets) => {
         { amount: 1 }
       );
 
-      let balance = transactions.reduce(
-        (prev, curr) => prev.amount + curr.amount
-      );
+      let balance = 0;
+
+      transactions.forEach((data) => {
+        balance += data.amount;
+      });
+
+      //! TODO reduce not working as expected
+      // let balance = transactions.reduce((prev, curr) => {
+      //   console.log(prev);
+      //   prev.amount + curr.amount;
+      // });
 
       let expend;
       balance = budget.limit - -1 * balance;
@@ -44,7 +53,7 @@ Date.prototype.addDays = function (days) {
   return date;
 };
 
-export function getDates(startDate, stopDate) {
+function getDates(startDate, stopDate) {
   var dateArray = new Array();
   var currentDate = startDate;
   while (currentDate <= stopDate) {
@@ -52,4 +61,35 @@ export function getDates(startDate, stopDate) {
     currentDate = currentDate.addDays(1);
   }
   return dateArray;
+}
+
+export function getChartData(budget, transactions) {
+  const dateRange = getDates(
+    new Date(budget.startDate),
+    new Date(budget.endDate)
+  );
+
+  let transactionData = JSON.parse(JSON.stringify(transactions));
+  const transactionDates = transactionData.map((data) => {
+    let date = new Date(data.createdAt);
+    return { day: date.getDate(), amount: data.amount };
+  });
+
+  let chart = dateRange.map((data) => {
+    let date = new Date(data);
+    let amount = 0;
+    let filterDays = transactionDates.filter(
+      (data) => data.day == date.getDate()
+    );
+
+    if (filterDays.length) {
+      filterDays.forEach((data) => {
+        amount += data.amount;
+      });
+    }
+
+    return { createdAt: moment(data).format("MMM DD"), amount: -1 * amount };
+  });
+
+  return chart;
 }

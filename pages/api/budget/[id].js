@@ -1,7 +1,7 @@
 import Budget from "@/models/Budget";
 import Transaction from "@/models/Transaction";
 import initDB from "@/helpers/initDb";
-import { calcBudget, getDates } from "@/helpers/calc";
+import { calcBudget, getChartData, getDates } from "@/helpers/calc";
 import Authenticate from "@/helpers/authenticate";
 
 initDB();
@@ -26,9 +26,7 @@ const budgetDetail = Authenticate(async (req, res) => {
       { amount: 1, createdAt: 1, note: 1 }
     ).sort({ createdAt: -1 });
 
-    let chart = getDates(new Date(budget.startDate), new Date(budget.endDate));
-
-    console.log(chart);
+    let chart = getChartData(budget, transactions);
 
     res.status(200).json({ transactions, chart, detail: budget });
   } catch (err) {

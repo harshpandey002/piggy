@@ -1,46 +1,16 @@
 import initDB from "@/helpers/initDb";
 import Transaction from "../../../models/Transaction";
 import Authenticate from "@/helpers/authenticate";
+import { getQueryObject } from "@/helpers/util";
 import chalk from "chalk";
 
 initDB();
-
-const getQueryObject = (filter) => {
-  let queryObj = {};
-  let sort = {};
-
-  queryObj.userId = filter.id;
-
-  if (!!filter.max) {
-    queryObj.amount = { $lte: filter.max, $gte: filter.min };
-  }
-
-  if (!!filter.category) {
-    queryObj.category = filter.category;
-  }
-
-  if (!!filter.note) {
-    queryObj.note = { $regex: filter.note, $options: "i" };
-  }
-
-  if (!!filter.amount) {
-    sort.amount = filter.amount;
-  } else {
-    sort.createdAt = filter.createdAt;
-  }
-
-  return { find: queryObj, sort };
-};
 
 const getTransactions = Authenticate(async (req, res) => {
   let filter = req.query;
   filter = JSON.parse(filter.filter);
   filter.id = req.userId;
   const { find, sort } = getQueryObject(filter);
-
-  // res
-  //   .status(200)
-  //   .json({ transactions: [{ category: "Transaction Sucessfull" }] });
 
   try {
     const transactions = await Transaction.find({
@@ -55,10 +25,25 @@ const getTransactions = Authenticate(async (req, res) => {
   }
 });
 
+const deleteTransaction = Authenticate(async (req, res) => {
+  const id = req.query.filter;
+  try {
+    await Transaction.findByIdAndDelete(id);
+    res.status(200).json({ message: "Delete Sucessful" });
+  } catch (error) {
+    console.log(error);
+    res.status(400).json({ error });
+  }
+});
+
 const transaction = (req, res) => {
   switch (req.method) {
     case "GET": {
       getTransactions(req, res);
+      break;
+    }
+    case "DELETE": {
+      deleteTransaction(req, res);
       break;
     }
   }

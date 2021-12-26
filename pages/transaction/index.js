@@ -7,6 +7,8 @@ import { parseCookies } from "nookies";
 import moment from "moment";
 import { getDebounce } from "@/util/common";
 import { BiSort } from "react-icons/bi";
+import { AiOutlineDelete } from "react-icons/ai";
+import baseUrl from "@/helpers/baseUrl";
 
 const debounceTransaction = getDebounce();
 
@@ -58,6 +60,7 @@ export default function Transaction() {
                 setEditMode={setEditMode}
                 setShowModal={setShowModal}
                 setTransaction={setTransaction}
+                getTransactions={getTransactions}
               />
             ))}
           </div>
@@ -82,11 +85,33 @@ const TransactionInfo = ({
   setEditMode,
   setShowModal,
   setTransaction,
+  getTransactions,
 }) => {
+  const { token } = parseCookies();
+
   const handleClick = () => {
     setTransaction(data);
     setEditMode();
     setShowModal(true);
+  };
+
+  const handleDelete = async (e) => {
+    e.stopPropagation();
+
+    const api = await fetch(baseUrl + "transaction/" + data._id, {
+      method: "DELETE",
+      headers: {
+        Authorization: token,
+      },
+    });
+
+    const res = await api.json();
+
+    if (api.ok) {
+      getTransactions();
+    } else {
+      alert(res.error);
+    }
   };
 
   return (
@@ -99,6 +124,9 @@ const TransactionInfo = ({
       <div className={`${styles.money} ${data.gain ? "green" : "red"} `}>
         {data.amount > 0 ? "+" + data.amount : data.amount}
         {/* {data.amount < 0 ? -1 * data.amount : data.amount} */}
+      </div>
+      <div onClick={handleDelete} className={styles.delete}>
+        <AiOutlineDelete className={styles.icon} />
       </div>
     </div>
   );

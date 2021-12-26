@@ -48,10 +48,41 @@
   border-radius: 5px;
   cursor: pointer;
   padding: 0.3rem 0.5rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.delete {
+  position: absolute;
+  width: 60px;
+  height: 100%;
+  top: 0;
+  right: 0;
+  transform: translateX(110%);
+  transition: transform 0.1s;
+  background-color: var(--white-3);
+  background: linear-gradient(90deg, var(--white-3) 0%, #d3d3d3 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.icon {
+  color: var(--white-6);
+  font-size: 1.3rem;
+  transition: color 0.2s;
+}
+
+.delete:hover .icon {
+  color: var(--black-2);
 }
 
 .transaction:hover {
   background-color: var(--white-3);
+}
+
+.transaction:hover .delete {
+  transform: translateX(0%);
 }
 
 .transactionHeader {

@@ -17,53 +17,6 @@ import {
 } from "recharts";
 import moment from "moment";
 
-const wait = [
-  {
-    name: "Oct 5",
-    pv: 0,
-  },
-  {
-    name: "Oct 7",
-    pv: 234,
-  },
-  {
-    name: "Oct 10",
-    pv: 0,
-  },
-  {
-    name: "Oct 14",
-    pv: 800,
-  },
-  {
-    name: "Oct 16",
-    pv: 0,
-  },
-  {
-    name: "Oct 20",
-    pv: 0,
-  },
-  {
-    name: "Oct 22",
-    pv: 230,
-  },
-  {
-    name: "Oct 25",
-    pv: 0,
-  },
-  {
-    name: "Oct 27",
-    pv: 600,
-  },
-  {
-    name: "Oct 29",
-    pv: 0,
-  },
-  {
-    name: "Oct 30",
-    pv: 0,
-  },
-];
-
 export default function BudgetDetail({ budget }) {
   // TODO Make this component mobile friendly
 

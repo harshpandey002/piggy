@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import styles from "@/styles/BudgetOverview.module.css";
 import BudgetCard from "./BudgetCard";
 import { parseCookies } from "nookies";
+import baseUrl from "@/helpers/baseUrl";
 
 export default function BudgetOverview() {
   const { token } = parseCookies();
@@ -21,18 +22,25 @@ export default function BudgetOverview() {
     const data = await res.json();
 
     if (res.ok) {
-      console.log(data.budgets);
-      setBudgets(data.budgets);
+      setBudgets(data);
     } else {
       console.log(data.error);
     }
   };
 
-  return (
-    <div className={styles.container}>
-      {budgets.map((budget) => (
-        <BudgetCard key={budget._id} data={budget} />
-      ))}
-    </div>
-  );
+  if (budgets.length) {
+    return (
+      <div className={styles.container}>
+        {budgets.map((budget) => (
+          <BudgetCard
+            key={budget._id}
+            data={budget}
+            fetchBudget={fetchBudget}
+          />
+        ))}
+      </div>
+    );
+  } else {
+    return <></>;
+  }
 }

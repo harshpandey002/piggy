@@ -1,7 +1,7 @@
 export const getQueryObject = (filter) => {
   let queryObj = {};
   let sort = {};
-
+  let limit = "";
   queryObj.userId = filter.id;
 
   if (!!filter.max) {
@@ -22,5 +22,9 @@ export const getQueryObject = (filter) => {
     sort.createdAt = filter.createdAt;
   }
 
-  return { find: queryObj, sort };
+  if (!!filter.limit) {
+    limit = filter.limit;
+  }
+
+  return { find: queryObj, sort, limit };
 };

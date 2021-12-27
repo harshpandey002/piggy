@@ -23,7 +23,7 @@ const filterTransaction = async (filter, set) => {
   });
   const data = await res.json();
 
-  console.log("%c Get all transactions", "color: yellow");
+  // console.log("%c Get all transactions", "color: yellow");
   if (res.ok) {
     // console.log("%c" + data.transactions, "color: green");
     set(data.transactions);

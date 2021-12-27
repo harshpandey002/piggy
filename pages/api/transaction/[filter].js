@@ -10,14 +10,16 @@ const getTransactions = Authenticate(async (req, res) => {
   let filter = req.query;
   filter = JSON.parse(filter.filter);
   filter.id = req.userId;
-  const { find, sort } = getQueryObject(filter);
+  const { find, sort, limit } = getQueryObject(filter);
 
   try {
     const transactions = await Transaction.find({
       ...find,
-    }).sort({
-      ...sort,
-    });
+    })
+      .sort({
+        ...sort,
+      })
+      .limit(limit);
 
     res.status(200).json({ transactions });
   } catch (e) {

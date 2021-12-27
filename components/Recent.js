@@ -1,15 +1,26 @@
-import styles from "@/styles/Recent.module.css";
+import { useState, useEffect } from "react";
 import { numberWithCommas } from "@/util/util";
 import { recent } from "@/util/content";
+import styles from "@/styles/Recent.module.css";
+import { getDebounce } from "@/util/common";
+import moment from "moment";
+
+const debounceTransaction = getDebounce();
 
 export default function Recent() {
+  const [transactions, setTransactions] = useState([]);
+
+  useEffect(() => {
+    debounceTransaction({ createdAt: -1, limit: 10 }, setTransactions);
+  }, []);
+
   return (
     <div className={` box ${styles.container}`}>
       <div className={styles.header}>
         <h3>Recent Transactions</h3>
       </div>
       <div className={styles.content}>
-        {recent.map((data) => (
+        {transactions.map((data) => (
           <Transaction key={data} data={data} />
         ))}
       </div>
@@ -20,10 +31,10 @@ export default function Recent() {
 const Transaction = ({ data }) => {
   return (
     <div className={styles.row}>
-      <p>{data.date}</p>
+      <p>{moment(data.createdAt).format("Do MMM")}</p>
       <p>{data.category}</p>
       <p className={data.gain ? "green" : "red"}>
-        {numberWithCommas(data.price)}
+        {numberWithCommas(data.amount)}
       </p>
     </div>
   );

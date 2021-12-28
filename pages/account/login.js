@@ -51,7 +51,7 @@ export default function Login() {
 
     if (res.ok) {
       Cookies.set("token", data.token);
-      Cookies.set("user", data.user);
+      Cookies.set("user", JSON.stringify(data.user));
       router.push("/dashboard");
     } else {
       setError(data.error);

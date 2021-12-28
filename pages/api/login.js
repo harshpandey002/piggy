@@ -8,8 +8,9 @@ initDB();
 const login = async (req, res) => {
   const { email, password } = req.body;
   try {
-    const user = await User.findOne({ email });
+    let user = await User.findOne({ email });
     const error = "Email or password do not match";
+    user = JSON.parse(JSON.stringify(user));
     if (!user) {
       res.status(400).json({ error });
     }
@@ -20,8 +21,8 @@ const login = async (req, res) => {
     const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET, {
       expiresIn: "7d",
     });
-    const { first_name, last_name } = user;
-    res.status(201).json({ token, user: { first_name, last_name, email } });
+    const { firstName, lastName } = user;
+    res.status(201).json({ token, user: { firstName, lastName, email } });
   } catch (err) {
     console.log(err);
   }

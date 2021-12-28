@@ -29,10 +29,12 @@ export default function Nav() {
             <span>Budget</span>
           </li>
         </Link>
-        <li>
-          <AiOutlineSetting className={styles.icon} />
-          <span>Settings</span>
-        </li>
+        <Link href="/setting" passHref>
+          <li>
+            <AiOutlineSetting className={styles.icon} />
+            <span>Settings</span>
+          </li>
+        </Link>
       </ul>
     </div>
   );

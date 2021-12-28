@@ -5,7 +5,7 @@ import bcrypt from "bcryptjs";
 initDB();
 
 const signup = async (req, res) => {
-  const { first, last, email, password } = req.body;
+  const { firstName, lastName, email, password } = req.body;
 
   try {
     const user = await User.findOne({ email });
@@ -15,8 +15,8 @@ const signup = async (req, res) => {
     }
     const hashedPass = await bcrypt.hash(password, 12);
     const newUser = await new User({
-      first_name: first,
-      last_name: last,
+      firstName,
+      lastName,
       email,
       password: hashedPass,
     }).save();

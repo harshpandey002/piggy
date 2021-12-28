@@ -8,8 +8,8 @@ export default function Signup() {
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
   const [formData, setFormData] = useState({
-    first: "",
-    last: "",
+    firstName: "",
+    lastName: "",
     email: "",
     password: "",
   });
@@ -18,10 +18,10 @@ export default function Signup() {
     setError("");
     setSuccess("");
     try {
-      if (!formData.first) {
+      if (!formData.firstName) {
         throw "Enter first name";
       }
-      if (!formData.last) {
+      if (!formData.lastName) {
         throw "Enter last name";
       }
       if (!formData.email) {
@@ -81,8 +81,8 @@ export default function Signup() {
               <input
                 type="text"
                 placeholder="First name"
-                name="first"
-                value={formData.first}
+                name="firstName"
+                value={formData.firstName}
                 onChange={handleChange}
               />
             </div>
@@ -91,8 +91,8 @@ export default function Signup() {
               <input
                 type="text"
                 placeholder="Last name"
-                name="last"
-                value={formData.last}
+                name="lastName"
+                value={formData.lastName}
                 onChange={handleChange}
               />
             </div>

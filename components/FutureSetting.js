@@ -34,6 +34,7 @@ export default function FutureSetting({ settings, getSettings }) {
         </button>
       </div>
       <ModalFuture
+        settings={settings}
         getSettings={getSettings}
         show={showModal}
         onClose={() => setShowModal(false)}

@@ -1,5 +1,6 @@
 import Authenticate from "@/helpers/authenticate";
 import initDB from "@/helpers/initDb";
+import Budget from "@/models/Budget";
 import Setting from "@/models/Setting";
 import Transaction from "@/models/Transaction";
 
@@ -64,7 +65,7 @@ const updateSettings = Authenticate(async (req, res) => {
       {
         $set: {
           futureDate: settingData.futureDate,
-          returns: settingData.returns,
+          returns: settingData.returns || 0,
         },
       }
     );
@@ -81,7 +82,25 @@ const resetAccount = Authenticate(async (req, res) => {
   let amount = req.body;
   amount = JSON.parse(JSON.stringify(amount.initialBalance));
   try {
-    console.log(amount);
+    await Transaction.deleteMany({ userId: id });
+    await Budget.deleteMany({ userId: id });
+
+    const body = {
+      userId: id,
+      necessary: true,
+      gain: true,
+      category: "Update Balance",
+      amount,
+      note: "",
+    };
+
+    await new Transaction(body).save();
+
+    await Setting.updateOne(
+      { userId: req.userId },
+      { $set: { initialBalance: amount } }
+    );
+
     res.status(200).json({ message: "Account Reset Successful" });
   } catch (error) {
     res.status(404).json({ error });

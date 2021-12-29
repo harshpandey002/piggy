@@ -12,7 +12,6 @@ const signup = async (req, res) => {
   try {
     const user = await User.findOne({ email });
     if (user) {
-      console.log(user);
       return res.status(422).json({ error: "This email already exists" });
     }
     const hashedPass = await bcrypt.hash(password, 12);

@@ -31,8 +31,6 @@ export default function Budget() {
     }
   };
 
-  console.log(budgets);
-
   return (
     <Layout>
       <div className={styles.container}>

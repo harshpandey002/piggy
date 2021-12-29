@@ -58,8 +58,6 @@ const updateSettings = Authenticate(async (req, res) => {
       return;
     }
 
-    console.log(settingData);
-
     await Setting.updateOne(
       { userId: id },
       {

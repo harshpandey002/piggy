@@ -22,12 +22,6 @@ export const calcBudget = async (budgets) => {
         balance += data.amount;
       });
 
-      //! TODO reduce not working as expected
-      // let balance = transactions.reduce((prev, curr) => {
-      //   console.log(prev);
-      //   prev.amount + curr.amount;
-      // });
-
       let expend;
       balance = budget.limit - -1 * balance;
 

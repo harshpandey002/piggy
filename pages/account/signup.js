@@ -51,7 +51,6 @@ export default function Signup() {
     const data = await res.json();
 
     if (res.ok) {
-      console.log(data);
       setSuccess(data.message);
     } else {
       setError(data.error);

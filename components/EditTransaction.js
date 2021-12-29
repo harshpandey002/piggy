@@ -79,7 +79,6 @@ export default function EditTransaction({
     });
     const data = await res.json();
     if (res.ok) {
-      console.log(data.message);
       getTransactions();
       handleClose(e);
     } else {

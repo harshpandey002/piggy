@@ -16,8 +16,6 @@ export default function ModalFuture({ show, onClose, getSettings }) {
     setIsBrowser(true);
   }, []);
 
-  console.log();
-
   const handleClose = (e) => {
     e.preventDefault();
     document.body.style.overflow = "initial";

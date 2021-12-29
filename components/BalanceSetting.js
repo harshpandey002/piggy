@@ -1,6 +1,17 @@
+import { useState } from "react";
 import styles from "@/styles/Setting.module.css";
+import ModalReset from "@/components/ModalReset";
 
 export default function BalanceSetting() {
+  const [isReset, setIsReset] = useState(false);
+  const [showModal, setShowModal] = useState(false);
+
+  const handleClick = (bool) => {
+    document.body.style.overflow = "hidden";
+    setIsReset(bool);
+    setShowModal(true);
+  };
+
   return (
     <div className={styles.wrapper}>
       <div className={styles.header}>
@@ -19,9 +30,18 @@ export default function BalanceSetting() {
         </p>
       </div>
       <div className={styles.action}>
-        <button className={styles.btnDark}>Make a transaction</button>
-        <button className={styles.btnRed}>Reset Account</button>
+        <button onClick={() => handleClick(false)} className={styles.btnDark}>
+          Make a transaction
+        </button>
+        <button onClick={() => handleClick(true)} className={styles.btnRed}>
+          Reset Account
+        </button>
       </div>
+      <ModalReset
+        show={showModal}
+        onClose={() => setShowModal(false)}
+        isReset={isReset}
+      />
     </div>
   );
 }

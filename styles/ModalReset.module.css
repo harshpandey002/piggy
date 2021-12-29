@@ -1,0 +1,105 @@
+.overlay {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.6);
+}
+
+.modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.container {
+  width: 100%;
+  max-width: 400px;
+}
+
+.header h2 {
+  font-weight: 400;
+}
+
+.description {
+  margin-block: 0.5rem;
+}
+
+.description p {
+  font-size: 1.1rem;
+  font-weight: 300;
+}
+
+.input label {
+  color: var(--white-6);
+}
+
+.input input {
+  width: 100%;
+  outline: none;
+  border: 1px solid var(--white-6);
+  padding: 0.5rem 0.6rem;
+  font-size: 1rem;
+  border-radius: 3px;
+  transition: all 0.2s;
+}
+
+.input input::-webkit-outer-spin-button,
+.input input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+}
+
+.inputGroup input:hover {
+  border-color: #8a8a8a;
+}
+
+.input input:focus {
+  border: 1px solid var(--black-3);
+}
+
+.action {
+  width: max-content;
+  display: flex;
+  margin-top: 1rem;
+  margin-left: auto;
+  gap: 10px;
+}
+
+.btnWhite,
+.btnDark,
+.btnRed {
+  padding: 0.5rem 0.8rem;
+  border-radius: 3px;
+  border: none;
+  outline: none;
+  font-size: 1.1rem;
+  cursor: pointer;
+  background-color: transparent;
+  color: white;
+  font-weight: 300;
+}
+
+.btnWhite {
+  color: black;
+}
+
+.btnWhite:hover {
+  background-color: var(--white-3);
+}
+
+.btnDark {
+  background-color: #242424;
+}
+
+.btnRed {
+  background-color: rgb(251, 60, 34);
+}
+
+.btnDark:hover {
+  background-color: var(--black-1);
+}
+
+.btnRed:hover {
+  background-color: #ef1e01;
+}

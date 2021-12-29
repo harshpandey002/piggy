@@ -10,6 +10,8 @@ export const getQueryObject = (filter) => {
 
   if (!!filter.category) {
     queryObj.category = filter.category;
+  } else {
+    queryObj.category = { $ne: "Update Balance" };
   }
 
   if (!!filter.note) {

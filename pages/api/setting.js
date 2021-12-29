@@ -35,6 +35,11 @@ async function createTransaction(req, res) {
 
     await new Transaction(body).save();
 
+    await Setting.updateOne(
+      { userId: req.userId },
+      { $set: { initialBalance: amount } }
+    );
+
     res.status(200).json({ message: "Current balance updated" });
   } catch (e) {
     console.log(e);

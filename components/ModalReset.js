@@ -60,6 +60,9 @@ const ResetAccount = ({ handleClose, getSettings }) => {
     const data = await res.json();
 
     if (res.ok) {
+      handleClose();
+      getSettings();
+    } else {
       console.log(data.error);
     }
   };

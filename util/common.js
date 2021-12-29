@@ -158,7 +158,6 @@ export const expenseOp = [
   { value: "Healthcare", label: "Healthcare" },
   { value: "Car", label: "Car" },
   { value: "Home", label: "Home" },
-  { value: "Update Balance", label: "Update Balance" },
 ];
 
 export const incomeOp = [
@@ -167,7 +166,7 @@ export const incomeOp = [
   { value: "Trading", label: "Trading" },
   { value: "Loan", label: "Loan" },
   { value: "Gift", label: "Gift" },
-  { value: "Update Balance", label: "Update Balance" },
+  { value: "Other", label: "Other" },
 ];
 
 export const groupedOp = [

@@ -59,8 +59,19 @@ const updateSettings = Authenticate(async (req, res) => {
 
     console.log(settingData);
 
+    await Setting.updateOne(
+      { userId: id },
+      {
+        $set: {
+          futureDate: settingData.futureDate,
+          returns: settingData.returns,
+        },
+      }
+    );
+
     res.status(200).json({ message: "Settings Updated" });
   } catch (error) {
+    console.log(error);
     res.status(404).json({ error });
   }
 });

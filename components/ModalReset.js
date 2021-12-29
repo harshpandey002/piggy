@@ -60,8 +60,8 @@ const ResetAccount = ({ handleClose, getSettings }) => {
     const data = await res.json();
 
     if (res.ok) {
-      handleClose();
       getSettings();
+      handleClose();
     } else {
       console.log(data.error);
     }
@@ -119,8 +119,8 @@ const MakeTransaction = ({ handleClose, getSettings }) => {
     const data = await res.json();
 
     if (res.ok) {
-      handleClose();
       getSettings();
+      handleClose();
     } else {
       console.log(data.error);
     }

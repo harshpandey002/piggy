@@ -2,7 +2,7 @@ import { useState } from "react";
 import styles from "@/styles/Setting.module.css";
 import ModalReset from "@/components/ModalReset";
 
-export default function BalanceSetting() {
+export default function BalanceSetting({ settings, getSettings }) {
   const [isReset, setIsReset] = useState(false);
   const [showModal, setShowModal] = useState(false);
 
@@ -16,7 +16,7 @@ export default function BalanceSetting() {
     <div className={styles.wrapper}>
       <div className={styles.header}>
         <h3>Initial Account Balance</h3>
-        <p>10,00,000 INR</p>
+        <p>{settings.initialBalance} INR</p>
       </div>
       <div className={styles.description}>
         <p>
@@ -41,6 +41,8 @@ export default function BalanceSetting() {
         show={showModal}
         onClose={() => setShowModal(false)}
         isReset={isReset}
+        settings={settings}
+        getSettings={getSettings}
       />
     </div>
   );

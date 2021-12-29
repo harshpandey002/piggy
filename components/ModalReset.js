@@ -1,16 +1,17 @@
 import { useState, useEffect } from "react";
 import ReactDOM from "react-dom";
 import styles from "@/styles/ModalReset.module.css";
+import { parseCookies } from "nookies";
+import baseUrl from "@/helpers/baseUrl";
 
-export default function ModalReset({ show, onClose, isReset }) {
+export default function ModalReset({ show, onClose, isReset, getSettings }) {
   const [isBrowser, setIsBrowser] = useState(false);
 
   useEffect(() => {
     setIsBrowser(true);
   }, []);
 
-  const handleClose = (e) => {
-    e.preventDefault();
+  const handleClose = () => {
     document.body.style.overflow = "initial";
     onClose();
   };
@@ -20,9 +21,12 @@ export default function ModalReset({ show, onClose, isReset }) {
       <div className={styles.overlay} onClick={handleClose} />
       <div className={` box ${styles.modal}`}>
         {isReset ? (
-          <ResetAccount handleClose={handleClose} />
+          <ResetAccount handleClose={handleClose} getSettings={getSettings} />
         ) : (
-          <MakeTransaction handleClose={handleClose} />
+          <MakeTransaction
+            handleClose={handleClose}
+            getSettings={getSettings}
+          />
         )}
       </div>
     </>
@@ -38,7 +42,28 @@ export default function ModalReset({ show, onClose, isReset }) {
   }
 }
 
-const ResetAccount = ({ handleClose }) => {
+const ResetAccount = ({ handleClose, getSettings }) => {
+  const [amount, setAmount] = useState();
+
+  const handleSubmit = async (e) => {
+    const { token } = parseCookies();
+
+    const res = await fetch(baseUrl + "setting", {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: token,
+      },
+      body: JSON.stringify({ initialBalance: amount }),
+    });
+
+    const data = await res.json();
+
+    if (res.ok) {
+      console.log(data.error);
+    }
+  };
+
   return (
     <div className={styles.container}>
       <div className={styles.header}>
@@ -53,19 +78,51 @@ const ResetAccount = ({ handleClose }) => {
       <div className={styles.input}>
         <label htmlFor="amount">Initial Account Balance</label>
 
-        <input type="number" id="amount" placeholder="Enter amount" />
+        <input
+          type="number"
+          id="amount"
+          placeholder="Enter amount"
+          value={amount}
+          onChange={(e) => setAmount(e.target.value)}
+        />
       </div>
       <div className={styles.action}>
         <button onClick={handleClose} className={styles.btnWhite}>
           Discard
         </button>
-        <button className={styles.btnRed}>Reset</button>
+        <button onClick={handleSubmit} className={styles.btnRed}>
+          Reset
+        </button>
       </div>
     </div>
   );
 };
 
-const MakeTransaction = ({ handleClose }) => {
+const MakeTransaction = ({ handleClose, getSettings }) => {
+  const [amount, setAmount] = useState();
+
+  const handleSubmit = async () => {
+    const { token } = parseCookies();
+
+    const res = await fetch(baseUrl + "setting", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: token,
+      },
+      body: JSON.stringify({ initialBalance: amount }),
+    });
+
+    const data = await res.json();
+
+    if (res.ok) {
+      handleClose();
+      getSettings();
+    } else {
+      console.log(data.error);
+    }
+  };
+
   return (
     <div className={styles.container}>
       <div className={styles.header}>
@@ -79,13 +136,21 @@ const MakeTransaction = ({ handleClose }) => {
       </div>
       <div className={styles.input}>
         <label htmlFor="amount">Current Account Balance</label>
-        <input type="number" id="amount" placeholder="Enter amount" />
+        <input
+          type="number"
+          id="amount"
+          placeholder="Enter amount"
+          value={amount}
+          onChange={(e) => setAmount(e.target.value)}
+        />
       </div>
       <div className={styles.action}>
         <button onClick={handleClose} className={styles.btnWhite}>
           Discard
         </button>
-        <button className={styles.btnDark}>Submit</button>
+        <button onClick={handleSubmit} className={styles.btnDark}>
+          Submit
+        </button>
       </div>
     </div>
   );

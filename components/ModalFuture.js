@@ -2,13 +2,12 @@ import { useState, useEffect } from "react";
 import ReactDOM from "react-dom";
 import styles from "@/styles/ModalFuture.module.css";
 import Select from "react-select";
-import { dropStyles2, getTheme, expenseOp } from "@/util/common";
 import { fiveYears } from "@/util/util";
 import { Calendar } from "react-date-range";
 import baseUrl from "@/helpers/baseUrl";
 import { parseCookies } from "nookies";
 
-export default function ModalFuture({ show, onClose }) {
+export default function ModalFuture({ show, onClose, getSettings }) {
   const [isBrowser, setIsBrowser] = useState(false);
   const [returns, setReturns] = useState(0);
   const [date, setDate] = useState(fiveYears());
@@ -28,30 +27,29 @@ export default function ModalFuture({ show, onClose }) {
 
     const { token } = parseCookies();
 
-    // const bodyObj = {
-    //   category: category.value,
-    //   startDate: range[0].startDate,
-    //   endDate: moment(range[0].endDate).endOf("day"),
-    //   limit: Number(limit),
-    // };
+    const bodyObj = {
+      initialBalance: "",
+      futureDate: date,
+      returns,
+    };
 
-    // const res = await fetch(baseUrl + "budget", {
-    //   method: "POST",
-    //   headers: {
-    //     "Content-Type": "application/json",
-    //     Authorization: token,
-    //   },
-    //   body: JSON.stringify(bodyObj),
-    // });
+    const res = await fetch(baseUrl + "setting", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: token,
+      },
+      body: JSON.stringify(bodyObj),
+    });
 
-    // const data = await res.json();
+    const data = await res.json();
 
-    // if (res.ok) {
-    //   fetchBudget();
-    //   handleClose(e);
-    // } else {
-    //   alert(data.error);
-    // }
+    if (res.ok) {
+      handleClose(e);
+      getSettings();
+    } else {
+      alert(data.error);
+    }
   };
 
   const modalContent = show ? (

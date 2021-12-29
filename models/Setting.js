@@ -7,7 +7,7 @@ const settingSchema = mongoose.Schema(
       ref: "User",
     },
     initialBalance: {
-      type: String,
+      type: Number,
       required: true,
     },
     futureDate: {

@@ -1,11 +1,12 @@
 import { useState } from "react";
 import styles from "@/styles/Setting.module.css";
 import ModalFuture from "@/components/ModalFuture";
+import moment from "moment";
 
-export default function FutureSetting() {
+export default function FutureSetting({ settings, getSettings }) {
   const [showModal, setShowModal] = useState(false);
 
-  const handleClick = (bool) => {
+  const handleClick = () => {
     document.body.style.overflow = "hidden";
     setShowModal(true);
   };
@@ -14,7 +15,7 @@ export default function FutureSetting() {
     <div className={styles.wrapper}>
       <div className={styles.header}>
         <h3>Future Projection</h3>
-        <p>12 July 2026</p>
+        <p>{moment(settings.futureDate).format("MMM Do YYYY")}</p>
       </div>
       <div className={styles.description}>
         <p>
@@ -28,10 +29,15 @@ export default function FutureSetting() {
       </div>
       <div className={styles.action}>
         <button onClick={handleClick} className={styles.btnDark}>
-          12 July 2026, 0%
+          {moment(settings.futureDate).format("MMM Do YYYY")},{" "}
+          {settings.returns}%
         </button>
       </div>
-      <ModalFuture show={showModal} onClose={() => setShowModal(false)} />
+      <ModalFuture
+        getSettings={getSettings}
+        show={showModal}
+        onClose={() => setShowModal(false)}
+      />
     </div>
   );
 }

@@ -27,3 +27,12 @@ export const handleColor = (expend) => {
 
   return color;
 };
+
+export const fiveYears = () => {
+  var d = new Date();
+  var year = d.getFullYear();
+  var month = d.getMonth();
+  var day = d.getDate();
+  var c = new Date(year + 5, month, day);
+  return c;
+};

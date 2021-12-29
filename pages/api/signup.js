@@ -1,5 +1,7 @@
 import initDB from "@/helpers/initDb";
 import User from "@/models/User";
+import Setting from "@/models/Setting";
+import { fiveYears } from "@/util/util";
 import bcrypt from "bcryptjs";
 
 initDB();
@@ -19,6 +21,13 @@ const signup = async (req, res) => {
       lastName,
       email,
       password: hashedPass,
+    }).save();
+
+    await new Setting({
+      userId: newUser._id,
+      initialBalance: 0,
+      returns: 0,
+      futureDate: fiveYears(),
     }).save();
     res.status(201).json({ message: "Signup success" });
   } catch (err) {

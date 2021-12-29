@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import { dropStyles2, getTheme, expenseOp, incomeOp } from "@/util/common";
 import Select from "react-select";
 import baseUrl from "@/helpers/baseUrl";
+import { transactions } from "@/util/content";
 
 export default function EditTransaction({
   editMode,
@@ -25,7 +26,9 @@ export default function EditTransaction({
     const populate = () => {
       setGain(transaction.gain ? "gain" : "loose");
       setNecessary(transaction.necessary);
-      setAmount(transaction.amount);
+      setAmount(
+        transaction.amount > 0 ? transaction.amount : -1 * transaction.amount
+      );
       setNote(transaction.note);
       setCategory({ label: transaction.category, value: transaction.category });
     };

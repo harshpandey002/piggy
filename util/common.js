@@ -166,6 +166,7 @@ export const incomeOp = [
   { value: "Trading", label: "Trading" },
   { value: "Loan", label: "Loan" },
   { value: "Gift", label: "Gift" },
+  { value: "Balance Change", label: "Balance Change" },
   { value: "Other", label: "Other" },
 ];
 

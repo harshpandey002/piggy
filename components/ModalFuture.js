@@ -3,18 +3,10 @@ import ReactDOM from "react-dom";
 import styles from "@/styles/ModalFuture.module.css";
 import Select from "react-select";
 import { dropStyles2, getTheme, expenseOp } from "@/util/common";
+import { fiveYears } from "@/util/util";
 import { Calendar } from "react-date-range";
 import baseUrl from "@/helpers/baseUrl";
 import { parseCookies } from "nookies";
-
-const fiveYears = () => {
-  var d = new Date();
-  var year = d.getFullYear();
-  var month = d.getMonth();
-  var day = d.getDate();
-  var c = new Date(year + 5, month, day);
-  return c;
-};
 
 export default function ModalFuture({ show, onClose }) {
   const [isBrowser, setIsBrowser] = useState(false);

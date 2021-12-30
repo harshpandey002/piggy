@@ -18,7 +18,7 @@ export default function Dashboard({ overview }) {
           {/* <BudgetOverview /> */}
         </div>
         <div className={styles.right}>
-          <Future />
+          <Future data={overview.futureData} />
           <Recent />
         </div>
       </div>

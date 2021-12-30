@@ -10,17 +10,19 @@ export default function WalletOverview({ data }) {
           <div className={styles.left}>
             <p>Balance</p>
             <h3
-              className="tooltip"
+              className="green tooltip"
+              style={{ marginTop: 0 }}
               data-tooltip={`₹${numberWithCommas(data.currentBalance)}`}
             >
               {numberWithCommas(data.currentBalance)}
             </h3>
-            <p
+            {/* <p
               className="tooltip"
               data-tooltip={`₹${numberWithCommas(data.balancePerDay)}`}
             >
               {numberWithCommas(data.balancePerDay)} <span>/ day</span>
-            </p>
+            </p> */}
+            {/* <p style={{ visibility: "hidden" }}>hide</p> */}
           </div>
           {/* <div className={styles.right}>
             <div className={styles.img}>

@@ -1,12 +1,13 @@
 import styles from "@/styles/Future.module.css";
 import { AiOutlineSetting } from "react-icons/ai";
 import { numberWithCommas } from "@/util/util";
+import moment from "moment";
 
-export default function Future() {
+export default function Future({ data }) {
   return (
     <div className={` box ${styles.container}`}>
       <div className={styles.header}>
-        <span>July 12, 2025</span>
+        <span>{moment(data.futureDate).format("MMMM DD, YYYY")}</span>
         <span>
           <AiOutlineSetting />
         </span>
@@ -17,13 +18,13 @@ export default function Future() {
             {/*? Net Worth after saving */}
             <h3
               className="tooltip"
-              data-tooltip={`₹${numberWithCommas(1540000)}`}
+              data-tooltip={`₹${numberWithCommas(data.futureBalance)}`}
             >
-              {numberWithCommas(1540000)}
+              {numberWithCommas(data.futureBalance)}
             </h3>
             <p>Net worth</p>
           </div>
-          <div className={styles.earn}>
+          {/* <div className={styles.earn}>
             <h3
               className="tooltip"
               data-tooltip={`₹${numberWithCommas(1040500)}`}
@@ -31,19 +32,19 @@ export default function Future() {
               {numberWithCommas(1040500)}
             </h3>
             <p>Without Save</p>
-          </div>
+          </div> */}
         </div>
         <div className={styles.dependencies}>
           <div className={styles.returns}>
-            <h3>6%</h3>
+            <h3>{data.returns}%</h3>
             <p>Returns</p>
           </div>
-          <div className={styles.save}>
+          {/* <div className={styles.save}>
             <h3 className="tooltip" data-tooltip={`₹${numberWithCommas(2000)}`}>
               {numberWithCommas(2000)}
             </h3>
             <p>Saved</p>
-          </div>
+          </div> */}
         </div>
       </div>
     </div>

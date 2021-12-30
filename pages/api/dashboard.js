@@ -3,8 +3,14 @@ import initDB from "@/helpers/initDb";
 import Authenticate from "@/helpers/authenticate";
 import Transaction from "@/models/Transaction";
 import moment from "moment";
+import Setting from "@/models/Setting";
 
 initDB();
+
+function getDays(date1, date2) {
+  var Difference_In_Time = date2.getTime() - date1.getTime();
+  return Difference_In_Time / (1000 * 3600 * 24);
+}
 
 const dashboard = Authenticate(async (req, res) => {
   const date = new Date();
@@ -28,6 +34,10 @@ const dashboard = Authenticate(async (req, res) => {
     );
 
     const historyData = await History.findOne({
+      userId: req.userId,
+    });
+
+    const futureData = await Setting.findOne({
       userId: req.userId,
     });
 
@@ -93,10 +103,24 @@ const dashboard = Authenticate(async (req, res) => {
       }
     }
 
+    let days = getDays(futureData.createdAt, futureData.futureDate);
+
+    let futureBalance = Math.floor(
+      currentBalance *
+        Math.pow(1 + futureData.returns / 100, Math.floor(days / 365))
+    );
+
+    const futures = {
+      futureBalance,
+      returns: futureData.returns,
+      futureDate: futureData.futureDate,
+      // withoutReturns,
+    };
+
     res.status(200).json({
       walletOverview: responseObj,
       balanceOverview,
-      futureData: {},
+      futureData: futures,
     });
   } catch (error) {
     console.log(error);

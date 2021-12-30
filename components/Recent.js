@@ -11,7 +11,7 @@ export default function Recent() {
   const [transactions, setTransactions] = useState([]);
 
   useEffect(() => {
-    debounceTransaction({ createdAt: -1, limit: 10 }, setTransactions);
+    debounceTransaction({ createdAt: -1, limit: 12 }, setTransactions);
   }, []);
 
   return (

@@ -8,7 +8,7 @@ export default function WalletOverview() {
       <div className={styles.content}>
         <div className={` box ${styles.card}`}>
           <div className={styles.left}>
-            <p>Gains</p>
+            <p>Balance</p>
             <h3
               className="tooltip"
               data-tooltip={`₹${numberWithCommas(12505)}`}
@@ -31,7 +31,7 @@ export default function WalletOverview() {
         </div>
         <div className={` box ${styles.card}`}>
           <div className={styles.left}>
-            <p>Expenditure</p>
+            <p>Income</p>
             <h3 className="tooltip" data-tooltip={`₹${numberWithCommas(8430)}`}>
               {numberWithCommas(8430)}
             </h3>
@@ -51,7 +51,7 @@ export default function WalletOverview() {
         </div>
         <div className={` box ${styles.card}`}>
           <div className={styles.left}>
-            <p>Expenditure</p>
+            <p>Expense</p>
             <h3 className="tooltip" data-tooltip={`₹${numberWithCommas(2505)}`}>
               {numberWithCommas(2505)}
             </h3>
@@ -71,7 +71,7 @@ export default function WalletOverview() {
         </div>
         <div className={` box ${styles.card}`}>
           <div className={styles.left}>
-            <p>Expenditure</p>
+            <p>Waste</p>
             <h3 className="tooltip" data-tooltip={`₹${numberWithCommas(8430)}`}>
               {numberWithCommas(8430)}
             </h3>

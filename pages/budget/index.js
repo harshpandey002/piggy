@@ -32,7 +32,7 @@ export default function Budget() {
   };
 
   return (
-    <Layout>
+    <Layout title="Budget">
       <div className={styles.container}>
         {budgets.map((budget) => (
           <BudgetCard

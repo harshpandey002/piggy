@@ -9,7 +9,7 @@ import { parseCookies } from "nookies";
 
 export default function Dashboard() {
   return (
-    <Layout>
+    <Layout title="Dashboard">
       <div className={styles.container}>
         <div className={styles.left}>
           <WalletOverview />

@@ -40,7 +40,7 @@ export default function Transaction() {
   };
 
   return (
-    <Layout>
+    <Layout title="Transaction">
       <div className={styles.container}>
         <div className={styles.header}>
           <div className={styles.create}>

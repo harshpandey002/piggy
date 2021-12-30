@@ -21,7 +21,7 @@ export default function BudgetDetail({ budget }) {
   // TODO Make this component mobile friendly
 
   return (
-    <Layout>
+    <Layout title="Budget Detail">
       <div className={styles.container}>
         <BudgetDetailCard data={budget.detail} />
         <div className={styles.content}>

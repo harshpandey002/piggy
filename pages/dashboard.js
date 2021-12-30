@@ -6,13 +6,14 @@ import BudgetOverview from "@/components/BudgetOverview";
 import Recent from "@/components/Recent";
 import Future from "@/components/Future";
 import { parseCookies } from "nookies";
+import baseUrl from "@/helpers/baseUrl";
 
-export default function Dashboard() {
+export default function Dashboard({ overview }) {
   return (
     <Layout title="Dashboard">
       <div className={styles.container}>
         <div className={styles.left}>
-          <WalletOverview />
+          <WalletOverview data={overview.walletOverview} />
           <Graph />
           {/* <BudgetOverview /> */}
         </div>
@@ -35,7 +36,16 @@ export async function getServerSideProps(ctx) {
       },
     };
   }
+
+  const res = await fetch(baseUrl + "dashboard", {
+    headers: {
+      Authorization: token,
+    },
+  });
+
+  const data = await res.json();
+
   return {
-    props: {},
+    props: { overview: data },
   };
 }

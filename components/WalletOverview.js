@@ -2,7 +2,9 @@
 import styles from "@/styles/WalletOverview.module.css";
 import { numberWithCommas } from "@/util/util";
 
-export default function WalletOverview() {
+export default function WalletOverview({ data }) {
+  console.log(data);
+
   return (
     <div className={styles.container}>
       <div className={styles.content}>
@@ -11,12 +13,15 @@ export default function WalletOverview() {
             <p>Balance</p>
             <h3
               className="tooltip"
-              data-tooltip={`₹${numberWithCommas(12505)}`}
+              data-tooltip={`₹${numberWithCommas(data.currentBalance)}`}
             >
-              {numberWithCommas(12505)}
+              {numberWithCommas(data.currentBalance)}
             </h3>
-            <p className="tooltip" data-tooltip={`₹${numberWithCommas(500)}`}>
-              {numberWithCommas(500)} <span>/ day</span>
+            <p
+              className="tooltip"
+              data-tooltip={`₹${numberWithCommas(data.balancePerDay)}`}
+            >
+              {numberWithCommas(data.balancePerDay)} <span>/ day</span>
             </p>
           </div>
           <div className={styles.right}>
@@ -32,11 +37,17 @@ export default function WalletOverview() {
         <div className={` box ${styles.card}`}>
           <div className={styles.left}>
             <p>Income</p>
-            <h3 className="tooltip" data-tooltip={`₹${numberWithCommas(8430)}`}>
-              {numberWithCommas(8430)}
+            <h3
+              className="tooltip"
+              data-tooltip={`₹${numberWithCommas(data.currentIncome)}`}
+            >
+              {numberWithCommas(data.currentIncome)}
             </h3>
-            <p className="tooltip" data-tooltip={`₹${numberWithCommas(300)}`}>
-              {numberWithCommas(300)} <span>/ day</span>
+            <p
+              className="tooltip"
+              data-tooltip={`₹${numberWithCommas(data.incomePerDay)}`}
+            >
+              {numberWithCommas(data.incomePerDay)} <span>/ day</span>
             </p>
           </div>
           <div className={styles.right}>
@@ -52,11 +63,17 @@ export default function WalletOverview() {
         <div className={` box ${styles.card}`}>
           <div className={styles.left}>
             <p>Expense</p>
-            <h3 className="tooltip" data-tooltip={`₹${numberWithCommas(2505)}`}>
-              {numberWithCommas(2505)}
+            <h3
+              className="tooltip"
+              data-tooltip={`₹${numberWithCommas(data.currentExpense)}`}
+            >
+              {numberWithCommas(data.currentExpense)}
             </h3>
-            <p className="tooltip" data-tooltip={`₹${numberWithCommas(500)}`}>
-              {numberWithCommas(500)} <span>/ day</span>
+            <p
+              className="tooltip"
+              data-tooltip={`₹${numberWithCommas(data.expensePerDay)}`}
+            >
+              {numberWithCommas(data.expensePerDay)} <span>/ day</span>
             </p>
           </div>
           <div className={styles.right}>
@@ -72,11 +89,17 @@ export default function WalletOverview() {
         <div className={` box ${styles.card}`}>
           <div className={styles.left}>
             <p>Waste</p>
-            <h3 className="tooltip" data-tooltip={`₹${numberWithCommas(8430)}`}>
-              {numberWithCommas(8430)}
+            <h3
+              className="tooltip"
+              data-tooltip={`₹${numberWithCommas(data.currentWaste)}`}
+            >
+              {numberWithCommas(data.currentWaste)}
             </h3>
-            <p className="tooltip" data-tooltip={`₹${numberWithCommas(300)}`}>
-              {numberWithCommas(300)} <span>/ day</span>
+            <p
+              className="tooltip"
+              data-tooltip={`₹${numberWithCommas(data.wastePerDay)}`}
+            >
+              {numberWithCommas(data.wastePerDay)} <span>/ day</span>
             </p>
           </div>
           <div className={styles.right}>

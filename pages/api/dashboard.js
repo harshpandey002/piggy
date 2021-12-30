@@ -72,9 +72,11 @@ const dashboard = Authenticate(async (req, res) => {
       currentWaste,
     };
 
-    res
-      .status(200)
-      .json({ accOverview: responseObj, balanceOverview: [], futureData: {} });
+    res.status(200).json({
+      walletOverview: responseObj,
+      balanceOverview: [],
+      futureData: {},
+    });
   } catch (error) {
     console.log(error);
     res.status(404).json({ error });

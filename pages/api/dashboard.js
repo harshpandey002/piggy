@@ -2,6 +2,7 @@ import History from "@/models/History";
 import initDB from "@/helpers/initDb";
 import Authenticate from "@/helpers/authenticate";
 import Transaction from "@/models/Transaction";
+import moment from "moment";
 
 initDB();
 
@@ -14,7 +15,7 @@ const dashboard = Authenticate(async (req, res) => {
   try {
     const allTransactions = await Transaction.find(
       { userId: req.userId },
-      { amount: 1 }
+      { amount: 1, createdAt: 1 }
     );
 
     const recentTransactions = await Transaction.find(
@@ -72,9 +73,29 @@ const dashboard = Authenticate(async (req, res) => {
       currentWaste,
     };
 
+    let balance = 0;
+
+    let balanceOverview = allTransactions.map((t) => {
+      balance += t.amount;
+
+      return {
+        _id: t.id,
+        date: moment(t.createdAt).format("MMM Do YYYY"),
+        balance,
+      };
+    });
+
+    for (let i in balanceOverview) {
+      if (i == 0) continue;
+
+      if (balanceOverview[i].date == balanceOverview[i - 1].date) {
+        balanceOverview.splice(i - 1, 1);
+      }
+    }
+
     res.status(200).json({
       walletOverview: responseObj,
-      balanceOverview: [],
+      balanceOverview,
       futureData: {},
     });
   } catch (error) {

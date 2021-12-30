@@ -3,8 +3,6 @@ import styles from "@/styles/WalletOverview.module.css";
 import { numberWithCommas } from "@/util/util";
 
 export default function WalletOverview({ data }) {
-  console.log(data);
-
   return (
     <div className={styles.container}>
       <div className={styles.content}>
@@ -24,7 +22,7 @@ export default function WalletOverview({ data }) {
               {numberWithCommas(data.balancePerDay)} <span>/ day</span>
             </p>
           </div>
-          <div className={styles.right}>
+          {/* <div className={styles.right}>
             <div className={styles.img}>
               <img
                 src="https://gcdn.pbrd.co/images/IcFqY2izVyv1.png?o=1"
@@ -32,7 +30,7 @@ export default function WalletOverview({ data }) {
               />
             </div>
             <p>10%</p>
-          </div>
+          </div> */}
         </div>
         <div className={` box ${styles.card}`}>
           <div className={styles.left}>
@@ -50,7 +48,7 @@ export default function WalletOverview({ data }) {
               {numberWithCommas(data.incomePerDay)} <span>/ day</span>
             </p>
           </div>
-          <div className={styles.right}>
+          {/* <div className={styles.right}>
             <div className={styles.img}>
               <img
                 src="https://gcdn.pbrd.co/images/M4kd49AErbyR.png?o=1"
@@ -58,7 +56,7 @@ export default function WalletOverview({ data }) {
               />
             </div>
             <p style={{ color: "#fa634e" }}>6%</p>
-          </div>
+          </div> */}
         </div>
         <div className={` box ${styles.card}`}>
           <div className={styles.left}>
@@ -76,7 +74,7 @@ export default function WalletOverview({ data }) {
               {numberWithCommas(data.expensePerDay)} <span>/ day</span>
             </p>
           </div>
-          <div className={styles.right}>
+          {/* <div className={styles.right}>
             <div className={styles.img}>
               <img
                 src="https://gcdn.pbrd.co/images/IcFqY2izVyv1.png?o=1"
@@ -84,7 +82,7 @@ export default function WalletOverview({ data }) {
               />
             </div>
             <p>3%</p>
-          </div>
+          </div> */}
         </div>
         <div className={` box ${styles.card}`}>
           <div className={styles.left}>
@@ -102,7 +100,7 @@ export default function WalletOverview({ data }) {
               {numberWithCommas(data.wastePerDay)} <span>/ day</span>
             </p>
           </div>
-          <div className={styles.right}>
+          {/* <div className={styles.right}>
             <div className={styles.img}>
               <img
                 src="https://gcdn.pbrd.co/images/M4kd49AErbyR.png?o=1"
@@ -110,7 +108,7 @@ export default function WalletOverview({ data }) {
               />
             </div>
             <p style={{ color: "#fa634e" }}>6%</p>
-          </div>
+          </div> */}
         </div>
       </div>
     </div>

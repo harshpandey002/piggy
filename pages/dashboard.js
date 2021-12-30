@@ -14,7 +14,7 @@ export default function Dashboard({ overview }) {
       <div className={styles.container}>
         <div className={styles.left}>
           <WalletOverview data={overview.walletOverview} />
-          <Graph />
+          <Graph data={overview.balanceOverview} />
           {/* <BudgetOverview /> */}
         </div>
         <div className={styles.right}>

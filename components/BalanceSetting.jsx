@@ -15,24 +15,24 @@ export default function BalanceSetting({ settings, getSettings }) {
   return (
     <div className={styles.wrapper}>
       <div className={styles.header}>
-        <h3>Initial Account Balance</h3>
-        <p>{settings.initialBalance} INR</p>
+        <h3>Reset Account</h3>
+        {/* <p>{settings.initialBalance} INR</p> */}
       </div>
       <div className={styles.description}>
         <p>
           If you reset your initial account balance, all your transactions and
           budgets will be lost.
         </p>
-        <p>
+        {/* <p>
           Instead of re-setting your initial account balance, you can increase
           or decrease amount from current account balance by making a
           transaction.
-        </p>
+        </p> */}
       </div>
       <div className={styles.action}>
-        <button onClick={() => handleClick(false)} className={styles.btnDark}>
+        {/* <button onClick={() => handleClick(false)} className={styles.btnDark}>
           Make a transaction
-        </button>
+        </button> */}
         <button onClick={() => handleClick(true)} className={styles.btnRed}>
           Reset Account
         </button>

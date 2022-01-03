@@ -31,8 +31,8 @@ export default function Setting() {
   return (
     <Layout title="Settings">
       <div className={styles.container}>
-        <BalanceSetting settings={settings} getSettings={getSettings} />
         <FutureSetting settings={settings} getSettings={getSettings} />
+        <BalanceSetting settings={settings} getSettings={getSettings} />
       </div>
     </Layout>
   );

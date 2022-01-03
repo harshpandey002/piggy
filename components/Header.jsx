@@ -1,6 +1,20 @@
+import { useState, useEffect } from "react";
 import styles from "@/styles/Header.module.css";
+import moment from "moment";
 
 export default function Header() {
+  const [time, setTime] = useState(new Date());
+
+  useEffect(() => {
+    let timer = setInterval(() => {
+      setTime(new Date());
+    }, 1000);
+
+    return () => {
+      clearInterval(timer);
+    };
+  }, []);
+
   return (
     <div className={styles.container}>
       <nav>
@@ -10,7 +24,7 @@ export default function Header() {
 
         <div className={styles.navItems}>
           <div className={styles.time}>
-            <p>01 Nov | 12:44AM</p>
+            <p>{moment(time).format("MMMM Do YYYY, h:mm:ss a")}</p>
           </div>
         </div>
       </nav>

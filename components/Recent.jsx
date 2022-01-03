@@ -14,6 +14,7 @@ export default function Recent() {
     debounceTransaction({ createdAt: -1, limit: 12 }, setTransactions);
   }, []);
 
+  let i = 0;
   return (
     <div className={` box ${styles.container}`}>
       <div className={styles.header}>
@@ -21,7 +22,7 @@ export default function Recent() {
       </div>
       <div className={styles.content}>
         {transactions.map((data) => (
-          <Transaction key={data} data={data} />
+          <Transaction key={i++} data={data} />
         ))}
       </div>
     </div>

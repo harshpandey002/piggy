@@ -16,6 +16,10 @@
   letter-spacing: 1px;
 }
 
+.time {
+  min-width: 260px;
+}
+
 .time p {
   font-size: 1.1rem;
 }

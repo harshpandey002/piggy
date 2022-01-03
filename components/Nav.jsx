@@ -4,10 +4,19 @@ import {
   AiOutlineHome,
   AiOutlineCreditCard,
   AiOutlineSetting,
+  AiOutlineLogout,
 } from "react-icons/ai";
 import Link from "next/link";
+import jsCookie from "js-cookie";
+import router from "next/router";
 
 export default function Nav() {
+  const handleLogout = () => {
+    jsCookie.remove("user");
+    jsCookie.remove("token");
+    router.push("/");
+  };
+
   return (
     <div className={styles.container}>
       <ul className={styles.links}>
@@ -35,6 +44,12 @@ export default function Nav() {
             <span>Settings</span>
           </li>
         </Link>
+      </ul>
+      <ul className={styles.logout}>
+        <li onClick={handleLogout}>
+          <AiOutlineLogout className={styles.icon} />
+          <span>Logout</span>
+        </li>
       </ul>
     </div>
   );
